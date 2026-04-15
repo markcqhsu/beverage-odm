@@ -288,6 +288,48 @@
     }
     .option-card.selected .option-label { color: rgba(255,255,255,0.7); }
 
+    /* Equipment info list */
+    .equip-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--surface-container-low);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .equip-info-item {
+      padding: 1.25rem 1.5rem;
+    }
+    .equip-info-item + .equip-info-item {
+      border-top: 1px solid var(--surface-container);
+    }
+    .equip-info-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+    .equip-info-title span {
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--on-surface-variant);
+      margin-left: 0.3rem;
+    }
+    .equip-info-row {
+      font-size: 0.84rem;
+      color: var(--on-surface-variant);
+      line-height: 1.7;
+      margin-bottom: 0.3rem;
+    }
+    .equip-info-row b {
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-right: 0.4rem;
+    }
+    .equip-info-row:last-child { margin-bottom: 0; }
+
     /* Skip button */
     .skip-btn {
       display: inline-flex;
@@ -793,6 +835,24 @@
           <div class="option-label">精密咖啡萃取</div>
         </div>
       </div>
+
+      <div class="equip-info-list">
+        <div class="equip-info-item">
+          <div class="equip-info-title">🫖 立式萃茶釜 <span>Vertical Extractor</span></div>
+          <div class="equip-info-row"><b>機制</b>多配備密閉垂直攪拌系統，透過精準控制秒數與水溫，使茶葉在水中高速旋轉、舒展。</div>
+          <div class="equip-info-row"><b>風味特點</b>茶湯濃度一致性極高，能快速萃取出茶葉的深層香氣，適合需要精準風味表現的商業場景。</div>
+        </div>
+        <div class="equip-info-item">
+          <div class="equip-info-title">🔩 臥式萃茶釜／浸泡式 <span>Horizontal / Immersion</span></div>
+          <div class="equip-info-row"><b>機制</b>利用水平轉動或浸泡籃方式，茶葉與水的接觸方式較為平緩。</div>
+          <div class="equip-info-row"><b>風味特點</b>風味表現較為溫和，類似冷泡或長時間浸泡的細緻感，能減少苦澀單寧酸的釋放。</div>
+        </div>
+        <div class="equip-info-item">
+          <div class="equip-info-title">⚙️ 均質機 <span>Homogenizer</span></div>
+          <div class="equip-info-row"><b>用途</b>透過高壓、剪切力或高速攪拌，將飲料中的脂肪、油脂或不溶性顆粒細化至微米級別，提升產品的穩定性、口感與外觀，並防止儲存時發生分層或沉澱。廣泛應用於乳製品、植物蛋白飲品、果汁及功能性飲料。</div>
+        </div>
+      </div>
+
       <div class="wizard-nav">
         <button class="btn-back" onclick="goBack()">← 返回</button>
         <button class="btn-next" onclick="goNext(2)">繼續 →</button>
