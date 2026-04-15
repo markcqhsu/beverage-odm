@@ -1044,40 +1044,40 @@
       </div>
       <button class="skip-btn" onclick="skipStep(3)">不需要顆粒充填，跳過 →</button>
       <div class="options-grid">
-        <div class="option-card" data-value="3*3" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="3*3*3" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">3 × 3</div>
+          <div class="option-name">3 × 3 × 3</div>
           <div class="option-label">mm</div>
         </div>
-        <div class="option-card" data-value="4*4" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="4*4*4" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">4 × 4</div>
+          <div class="option-name">4 × 4 × 4</div>
           <div class="option-label">mm</div>
         </div>
-        <div class="option-card" data-value="5*5" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="5*5*5" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">5 × 5</div>
+          <div class="option-name">5 × 5 × 5</div>
           <div class="option-label">mm</div>
         </div>
-        <div class="option-card" data-value="6*6" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="6*6*6" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">6 × 6</div>
+          <div class="option-name">6 × 6 × 6</div>
           <div class="option-label">mm</div>
         </div>
-        <div class="option-card" data-value="7*7" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="7*7*7" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">7 × 7</div>
+          <div class="option-name">7 × 7 × 7</div>
           <div class="option-label">mm</div>
         </div>
-        <div class="option-card" data-value="8*8" onclick="selectOne(this,'particle')">
+        <div class="option-card" data-value="8*8*8" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🟫</span>
-          <div class="option-name">8 × 8</div>
+          <div class="option-name">8 × 8 × 8</div>
           <div class="option-label">mm</div>
         </div>
       </div>
@@ -1324,7 +1324,7 @@
       bottleMouth: '1881 28mm、1810 28mm',
       beverages: ['茶','果汁','運動飲料'],
       equipment: [],
-      particles: ['3*3','4*4','5*5','6*6','7*7','8*8'],
+      particles: ['3*3*3','4*4*4','5*5*5','6*6*6','7*7*7','8*8*8'],
       bottlenecks: ['1881 28mm','1810 28mm'],
       labels: ['套標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
@@ -1348,7 +1348,7 @@
       bottleMouth: '1881 28mm、38mm',
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','蘆薈','其他'],
       equipment: ['立式萃茶釜','均質機'],
-      particles: ['3*3','4*4','5*5','6*6'],
+      particles: ['3*3*3','4*4*4','5*5*5','6*6*6'],
       bottlenecks: ['1881 28mm','38mm'],
       labels: ['套標','貼標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
@@ -1650,7 +1650,7 @@
       const chips = [
         ...sel.beverage,
         ...sel.equipment,
-        ...(sel.particle ? [`顆粒 ${sel.particle}mm`] : []),
+        ...(sel.particle ? [`顆粒 ${sel.particle.replace(/\*/g,'×')}mm`] : []),
         ...(sel.bottleneck ? [`瓶口 ${sel.bottleneck}`] : []),
         ...(sel.label ? [sel.label] : []),
         ...sel.cert
