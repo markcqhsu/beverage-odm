@@ -926,10 +926,45 @@
       </div>
     </div>
 
-    <!-- Step 4: Label -->
+    <!-- Step 4: Bottle mouth -->
     <div class="step" id="step-4">
       <div class="step-header">
-        <p class="step-number">Step 04 / 05</p>
+        <p class="step-number">Step 04 / 06</p>
+        <h2 class="step-title">瓶口尺寸？</h2>
+        <p class="step-hint">選擇一種</p>
+      </div>
+      <div class="options-grid" style="grid-template-columns:repeat(4,1fr);max-width:560px;">
+        <div class="option-card" data-value="1881" onclick="selectOne(this,'bottleneck')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🧴</span>
+          <div class="option-name">1881</div>
+        </div>
+        <div class="option-card" data-value="1810" onclick="selectOne(this,'bottleneck')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🧴</span>
+          <div class="option-name">1810</div>
+        </div>
+        <div class="option-card" data-value="28mm" onclick="selectOne(this,'bottleneck')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🧴</span>
+          <div class="option-name">28mm</div>
+        </div>
+        <div class="option-card" data-value="38mm" onclick="selectOne(this,'bottleneck')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🧴</span>
+          <div class="option-name">38mm</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Label -->
+    <div class="step" id="step-5">
+      <div class="step-header">
+        <p class="step-number">Step 05 / 06</p>
         <h2 class="step-title">標籤形式？</h2>
         <p class="step-hint">選擇一種</p>
       </div>
@@ -949,18 +984,18 @@
       </div>
       <div class="wizard-nav">
         <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>繼續 →</button>
+        <button class="btn-next" id="next-5" onclick="goNext(5)" disabled>繼續 →</button>
       </div>
     </div>
 
-    <!-- Step 5: Certifications -->
-    <div class="step" id="step-5">
+    <!-- Step 6: Certifications -->
+    <div class="step" id="step-6">
       <div class="step-header">
-        <p class="step-number">Step 05 / 05</p>
+        <p class="step-number">Step 06 / 06</p>
         <h2 class="step-title">需要哪些認證？</h2>
         <p class="step-hint">可以複選，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(5)">不需要特定認證，跳過 →</button>
+      <button class="skip-btn" onclick="skipStep(6)">不需要特定認證，跳過 →</button>
       <div class="options-grid wide">
         <div class="option-card" data-value="FSSC 22000" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
@@ -1035,7 +1070,7 @@
 </main>
 
 <script>
-  const TOTAL_STEPS = 5;
+  const TOTAL_STEPS = 6;
   let currentStep = 0;
   let history = [];
 
@@ -1043,6 +1078,7 @@
     beverage: [],
     equipment: [],
     particle: null,
+    bottleneck: null,
     label: null,
     cert: []
   };
@@ -1061,6 +1097,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','蘆薈','其他'],
       equipment: ['立式萃茶釜','均質機'],
       particles: ['3*3','4*4','5*5','6*6'],
+      bottlenecks: ['1881'],
       labels: ['套標'],
       certs: ['FSSC 22000','ISO 9001'],
       restrictions: [],
@@ -1085,6 +1122,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
       equipment: ['臥式萃茶釜','均質機'],
       particles: [],
+      bottlenecks: ['28mm','38mm'],
       labels: ['套標','貼標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
@@ -1102,6 +1140,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
       equipment: ['立式萃茶釜'],
       particles: [],
+      bottlenecks: ['28mm','38mm'],
       labels: ['套標','貼標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
@@ -1152,9 +1191,9 @@
   }
 
   function skipStep(step) {
-    if (step === 2) sel.equipment = [];
-    if (step === 3) sel.particle  = null;
-    if (step === 5) sel.cert      = [];
+    if (step === 2) sel.equipment  = [];
+    if (step === 3) sel.particle   = null;
+    if (step === 6) sel.cert       = [];
     history.push(step);
     if (step < TOTAL_STEPS) showStep(step + 1);
     else showResults();
@@ -1192,7 +1231,8 @@
     card.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     card.classList.add('selected');
     sel[type] = card.dataset.value;
-    if (type === 'label') document.getElementById('next-4').disabled = false;
+    if (type === 'bottleneck') document.getElementById('next-4').disabled = false;
+    if (type === 'label') document.getElementById('next-5').disabled = false;
   }
 
   // ─── Matching ───
@@ -1210,6 +1250,10 @@
     if (sel.particle) {
       total++;
       if (line.particles.includes(sel.particle)) matched++;
+    }
+    if (sel.bottleneck) {
+      total++;
+      if (line.bottlenecks.includes(sel.bottleneck)) matched++;
     }
     if (sel.label) {
       total++;
@@ -1242,6 +1286,7 @@
         ...sel.beverage,
         ...sel.equipment,
         ...(sel.particle ? [`顆粒 ${sel.particle}mm`] : []),
+        ...(sel.bottleneck ? [`瓶口 ${sel.bottleneck}`] : []),
         ...(sel.label ? [sel.label] : []),
         ...sel.cert
       ].map(c => `<span class="summary-chip">${c}</span>`).join('');
@@ -1310,12 +1355,13 @@
 
   function restart() {
     sel.beverage = []; sel.equipment = [];
-    sel.particle = null; sel.label = null; sel.cert = [];
+    sel.particle = null; sel.bottleneck = null; sel.label = null; sel.cert = [];
     history = []; currentStep = 0;
 
     document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     document.getElementById('next-1').disabled = true;
     document.getElementById('next-4').disabled = true;
+    document.getElementById('next-5').disabled = true;
     document.getElementById('results').classList.remove('active');
     document.getElementById('results').innerHTML = '';
     document.getElementById('hero').style.display = '';
