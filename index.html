@@ -288,6 +288,33 @@
     }
     .option-card.selected .option-label { color: rgba(255,255,255,0.7); }
 
+    /* Neck / bottle mouth cards */
+    .neck-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+      max-width: 540px;
+    }
+    .neck-card {
+      padding: 1.2rem 0.75rem 1rem !important;
+    }
+    .neck-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 0.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+      filter: brightness(0.97);
+      transition: filter 0.2s;
+    }
+    .option-card.neck-card.selected .neck-img {
+      filter: brightness(0.85) saturate(0.6);
+    }
+    @media (max-width: 480px) {
+      .neck-grid { grid-template-columns: repeat(3, 1fr) !important; max-width: 100%; }
+      .neck-img { height: 100px; }
+    }
+
     /* Equipment cards */
     .equip-grid {
       grid-template-columns: repeat(2, 1fr) !important;
@@ -933,26 +960,24 @@
         <h2 class="step-title">瓶口尺寸？</h2>
         <p class="step-hint">選擇一種</p>
       </div>
-      <div class="options-grid" style="grid-template-columns:repeat(4,1fr);max-width:560px;">
-        <div class="option-card" data-value="1881" onclick="selectOne(this,'bottleneck')">
+      <div class="options-grid neck-grid">
+        <div class="option-card neck-card" data-value="1881 28mm" onclick="selectOne(this,'bottleneck')">
           <span class="check-badge">✓</span>
-          <span class="option-icon">🧴</span>
+          <img src="images/neck-1881-28mm.jpg" alt="1881 28mm" class="neck-img">
           <div class="option-name">1881</div>
+          <div class="option-label">28mm</div>
         </div>
-        <div class="option-card" data-value="1810" onclick="selectOne(this,'bottleneck')">
+        <div class="option-card neck-card" data-value="1810 28mm" onclick="selectOne(this,'bottleneck')">
           <span class="check-badge">✓</span>
-          <span class="option-icon">🧴</span>
+          <img src="images/neck-1810-28mm.jpg" alt="1810 28mm" class="neck-img">
           <div class="option-name">1810</div>
+          <div class="option-label">28mm</div>
         </div>
-        <div class="option-card" data-value="28mm" onclick="selectOne(this,'bottleneck')">
+        <div class="option-card neck-card" data-value="38mm" onclick="selectOne(this,'bottleneck')">
           <span class="check-badge">✓</span>
-          <span class="option-icon">🧴</span>
-          <div class="option-name">28mm</div>
-        </div>
-        <div class="option-card" data-value="38mm" onclick="selectOne(this,'bottleneck')">
-          <span class="check-badge">✓</span>
-          <span class="option-icon">🧴</span>
+          <img src="images/neck-38mm.jpg" alt="38mm" class="neck-img">
           <div class="option-name">38mm</div>
+          <div class="option-label">&nbsp;</div>
         </div>
       </div>
       <div class="wizard-nav">
@@ -1097,7 +1122,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','蘆薈','其他'],
       equipment: ['立式萃茶釜','均質機'],
       particles: ['3*3','4*4','5*5','6*6'],
-      bottlenecks: ['1881'],
+      bottlenecks: ['1881 28mm'],
       labels: ['套標'],
       certs: ['FSSC 22000','ISO 9001'],
       restrictions: [],
@@ -1122,7 +1147,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
       equipment: ['臥式萃茶釜','均質機'],
       particles: [],
-      bottlenecks: ['28mm','38mm'],
+      bottlenecks: ['1881 28mm','1810 28mm','38mm'],
       labels: ['套標','貼標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
@@ -1140,7 +1165,7 @@
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
       equipment: ['立式萃茶釜'],
       particles: [],
-      bottlenecks: ['28mm','38mm'],
+      bottlenecks: ['1881 28mm','1810 28mm','38mm'],
       labels: ['套標','貼標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
