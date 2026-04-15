@@ -693,6 +693,84 @@
       border-radius: 2rem;
     }
 
+    /* Public bottle designs */
+    .bottle-designs {
+      margin-bottom: 1.25rem;
+    }
+    .bottle-designs-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin-bottom: 0.75rem;
+    }
+    .bottle-designs-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .bottle-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--surface-container-low);
+      border-radius: 0.875rem;
+      padding: 0.875rem 1.125rem;
+      border: 1px solid var(--surface-container-high);
+      flex: 0 0 auto;
+    }
+    .bottle-images {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .bottle-img-wrap {
+      width: 64px;
+      height: 96px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background: var(--surface-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bottle-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .bottle-img-wrap.placeholder {
+      border: 1.5px dashed var(--surface-container-high);
+      color: var(--surface-container-high);
+      font-size: 1.4rem;
+    }
+    .bottle-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .bottle-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--on-surface);
+    }
+    .bottle-capacity-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(20, 51, 99, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2rem;
+    }
+    .bottle-img-type {
+      font-size: 0.62rem;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin-top: 0.25rem;
+    }
+
     .restart-btn {
       display: block;
       margin: 3.5rem auto 0;
@@ -1131,6 +1209,7 @@
       labels: ['套標','貼標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
       restrictions: [],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
@@ -1153,6 +1232,7 @@
       labels: ['套標','貼標'],
       certs: ['FSSC 22000','ISO 9001'],
       restrictions: [],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
@@ -1175,6 +1255,7 @@
       labels: ['套標'],
       certs: ['FSSC 22000','ISO 9001'],
       restrictions: [],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
@@ -1197,6 +1278,7 @@
       labels: ['套標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
       restrictions: ['茶類僅支援酸性茶（如芒果綠茶），不支援一般茶飲'],
+      bottles: [],
       specExtras: [
         { label: '最大顆粒尺寸', value: '8×8×8 mm' },
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
@@ -1220,6 +1302,7 @@
       labels: ['套標','貼標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
       restrictions: [],
+      bottles: [],
       specExtras: [
         { label: '最大顆粒尺寸', value: '6×6×6 mm' },
         { label: '最大果肉含量', value: '10%' },
@@ -1245,6 +1328,7 @@
       labels: ['套標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
@@ -1267,6 +1351,7 @@
       labels: ['套標'],
       certs: [],
       restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
@@ -1289,6 +1374,7 @@
       labels: ['套標'],
       certs: ['ISO 9001','FSSC 22000','Halal'],
       restrictions: [],
+      bottles: ['surabaya-250ml'],
       specExtras: [
         { label: '瓶高範圍', value: '120 ～ 250 mm' },
         { label: '瓶寬範圍', value: '53 ～ 75 mm' },
@@ -1311,6 +1397,7 @@
       labels: ['套標'],
       certs: ['ISO 9001','FSSC 22000','Halal'],
       restrictions: [],
+      bottles: ['surabaya-250ml'],
       specExtras: [
         { label: '瓶高範圍', value: '115 ～ 280 mm' },
         { label: '瓶寬範圍', value: '35 ～ 75 mm' },
@@ -1333,6 +1420,7 @@
       labels: ['套標'],
       certs: ['ISO 9001','FSSC 22000','Halal'],
       restrictions: ['僅支援水果茶，不支援其他茶類或飲品'],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '100 ～ 370 mm' },
         { label: '瓶寬範圍', value: '30 ～ 98.9 mm' },
@@ -1355,6 +1443,7 @@
       labels: ['套標'],
       certs: ['ISO 9001','FSSC 22000','Halal'],
       restrictions: [],
+      bottles: [],
       specExtras: [
         { label: '瓶高範圍', value: '120 ～ 270 mm' },
         { label: '瓶寬範圍', value: '53 ～ 80 mm' },
@@ -1362,6 +1451,16 @@
       ]
     }
   ];
+
+  // ─── Bottle designs catalogue ───
+  const bottleDesigns = {
+    'surabaya-250ml': {
+      name: '250ml 標準瓶',
+      capacity: '250 ml',
+      emptyImg: 'images/bottle-surabaya-250ml-empty.png',
+      contextImg: null,   // 情境圖待補
+    }
+  };
 
   // ─── Progress ───
   function initProgress() {
@@ -1522,6 +1621,33 @@
                 <div class="spec-label">${s.label}</div>
                 <div class="spec-value">${s.value}</div>
               </div>`).join('')}</div>` : '';
+        const bottleDesignsHtml = (line.bottles && line.bottles.length)
+          ? `<div class="bottle-designs">
+              <div class="bottle-designs-label">公瓶設計</div>
+              <div class="bottle-designs-row">
+                ${line.bottles.map(bid => {
+                  const b = bottleDesigns[bid];
+                  if (!b) return '';
+                  const emptyImgHtml = b.emptyImg
+                    ? `<img src="${b.emptyImg}" alt="${b.name} 空瓶示意">`
+                    : '';
+                  const contextImgHtml = b.contextImg
+                    ? `<img src="${b.contextImg}" alt="${b.name} 情境圖">`
+                    : '';
+                  return `
+                    <div class="bottle-card">
+                      <div class="bottle-images">
+                        ${b.emptyImg ? `<div><div class="bottle-img-wrap">${emptyImgHtml}</div><div class="bottle-img-type">空瓶示意</div></div>` : ''}
+                        ${b.contextImg ? `<div><div class="bottle-img-wrap">${contextImgHtml}</div><div class="bottle-img-type">情境圖</div></div>` : ''}
+                      </div>
+                      <div class="bottle-info">
+                        <div class="bottle-name">${b.name}</div>
+                        <span class="bottle-capacity-badge">${b.capacity}</span>
+                      </div>
+                    </div>`;
+                }).join('')}
+              </div>
+            </div>` : '';
 
         return `
           <div class="line-card ${isTop?'top-match':''}">
@@ -1545,6 +1671,7 @@
             </div>
             <div class="line-tags">${beverageTags}${equipTags}${certTags}</div>
             ${specExtrasHtml}
+            ${bottleDesignsHtml}
             ${restrictHtml}
             <div class="line-footer">
               <div class="line-capacity"></div>
