@@ -562,6 +562,66 @@
       transform: translateY(-2px);
     }
 
+    /* Meta pills */
+    .line-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.1rem;
+    }
+    .meta-pill {
+      padding: 0.28rem 0.8rem;
+      background: var(--surface-container-low);
+      border-radius: 2rem;
+      font-size: 0.76rem;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
+    /* Cert tags */
+    .cert-tag { font-style: italic; }
+
+    /* Spec grid */
+    .line-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+      background: var(--surface-container-low);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.1rem;
+    }
+    .spec-item {}
+    .spec-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .spec-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--on-surface);
+    }
+
+    /* Restrictions */
+    .line-restrictions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
+    }
+    .line-restrictions span {
+      font-size: 0.76rem;
+      color: #7c5e00;
+      background: #fff8e1;
+      padding: 0.25rem 0.75rem;
+      border-radius: 2rem;
+    }
+
     .restart-btn {
       display: block;
       margin: 3.5rem auto 0;
@@ -824,6 +884,18 @@
       </div>
       <button class="skip-btn" onclick="skipStep(5)">不需要特定認證，跳過 →</button>
       <div class="options-grid wide">
+        <div class="option-card" data-value="FSSC 22000" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🏅</span>
+          <div class="option-name">FSSC 22000</div>
+          <div class="option-label">食品安全系統認證</div>
+        </div>
+        <div class="option-card" data-value="ISO 9001" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">📐</span>
+          <div class="option-name">ISO 9001</div>
+          <div class="option-label">品質管理系統</div>
+        </div>
         <div class="option-card" data-value="FDA" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🇺🇸</span>
@@ -897,51 +969,65 @@
     cert: []
   };
 
-  // Mock production line data
+  // Production line data
   const lines = [
     {
-      id: 'A',
-      name: '旗艦全能產線 Alpha',
-      desc: '多品類全配置，全認證覆蓋，最適合品項豐富的品牌商',
-      capacity: '60,000 瓶 / 日',
-      beverages: ['茶','奶茶','咖啡','果汁','植物奶','蘆薈','椰子汁','其他'],
-      equipment: ['立式萃茶釜','臥式萃茶釜','均質機','咖啡萃取機'],
-      particles: ['3*3','4*4','5*5','6*6','7*7','8*8'],
-      labels: ['套標','貼標'],
-      certs: ['FDA','Kosher','Halal','BRC','ISO 14001','Sedex / SMETA']
+      id: '無菌三廠',
+      name: '無菌三廠',
+      location: '（廠區待補充）',
+      processType: '無菌充填（Aseptic）',
+      desc: '立式圓筒形萃取系統搭配均質機，支援顆粒充填（最大 6×6×6mm），適合多品類飲料',
+      speed: '36,000 BPH',
+      capacity: '200ml ～ 2000ml',
+      bottleMouth: '1881',
+      beverages: ['茶','奶茶','咖啡','運動飲料','果汁','蘆薈','其他'],
+      equipment: ['立式萃茶釜','均質機'],
+      particles: ['3*3','4*4','5*5','6*6'],
+      labels: ['套標'],
+      certs: ['FSSC 22000','ISO 9001'],
+      restrictions: [],
+      specExtras: [
+        { label: '最大顆粒尺寸', value: '6×6×6 mm' },
+        { label: '最大果肉含量', value: '10%' },
+        { label: '最大纖維長度', value: '20 mm' },
+        { label: '瓶高範圍', value: '150 ～ 310 mm' },
+        { label: '瓶寬範圍', value: '55 ～ 108 mm' },
+        { label: '套標長度範圍', value: '30 ～ 300 mm' },
+      ]
     },
     {
-      id: 'B',
-      name: '茶飲精工產線 Bravo',
-      desc: '專為茶飲、奶茶設計，萃茶設備齊全，支援小顆粒充填',
-      capacity: '45,000 瓶 / 日',
-      beverages: ['茶','奶茶'],
-      equipment: ['立式萃茶釜','臥式萃茶釜'],
-      particles: ['3*3','4*4','5*5'],
-      labels: ['套標','貼標'],
-      certs: ['FDA','Halal','ISO 14001']
-    },
-    {
-      id: 'C',
-      name: '機能飲料產線 Charlie',
-      desc: '運動飲料、蛋白飲、植物奶的最佳選擇，均質機全配',
-      capacity: '50,000 瓶 / 日',
-      beverages: ['運動飲料','蛋白飲','植物奶','咖啡'],
-      equipment: ['均質機','咖啡萃取機'],
+      id: '漳州-L1',
+      name: '漳州廠 Line 1',
+      location: '漳州廠',
+      processType: '無菌充填（Aseptic）',
+      desc: '臥式萃茶釜搭配均質機，支援碳酸飲料與植物奶，產能 48,000 BPH',
+      speed: '48,000 BPH',
+      capacity: '250ml ～ 1500ml',
+      bottleMouth: '28mm、38mm',
+      beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
+      equipment: ['臥式萃茶釜','均質機'],
       particles: [],
-      labels: ['貼標'],
-      certs: ['FDA','BRC','ISO 14001','Sedex / SMETA']
+      labels: ['套標','貼標'],
+      certs: [],
+      restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      specExtras: []
     },
     {
-      id: 'D',
-      name: '果汁天然產線 Delta',
-      desc: '果汁、椰子汁、蘆薈飲品的專屬產線，大顆粒充填',
-      capacity: '40,000 瓶 / 日',
-      beverages: ['果汁','椰子汁','蘆薈','其他'],
-      equipment: ['均質機'],
-      particles: ['5*5','6*6','7*7','8*8'],
+      id: '漳州-L2',
+      name: '漳州廠 Line 2',
+      location: '漳州廠',
+      processType: '無菌充填（Aseptic）',
+      desc: '立式萃茶釜，支援碳酸飲料與植物奶，與 Line 1 同廠並行擴產',
+      speed: '48,000 BPH',
+      capacity: '250ml ～ 1500ml',
+      bottleMouth: '28mm、38mm',
+      beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶','其他'],
+      equipment: ['立式萃茶釜'],
+      particles: [],
       labels: ['套標','貼標'],
-      certs: ['FDA','Kosher','Halal']
+      certs: [],
+      restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      specExtras: []
     }
   ];
 
@@ -1084,11 +1170,20 @@
 
       const cardsHtml = scored.map((line, idx) => {
         const isTop = idx === 0;
-        const tags = [
-          ...line.beverages.map(b => `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`),
-          ...line.equipment.map(e => `<span class="line-tag ${sel.equipment.includes(e)?'matched':''}">${e}</span>`),
-          ...line.certs.map(c => `<span class="line-tag ${sel.cert.includes(c)?'matched':''}">${c}</span>`)
-        ].join('');
+        const beverageTags = line.beverages.map(b =>
+          `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`).join('');
+        const equipTags = line.equipment.map(e =>
+          `<span class="line-tag ${sel.equipment.includes(e)?'matched':''}">${e}</span>`).join('');
+        const certTags = line.certs.map(c =>
+          `<span class="line-tag cert-tag ${sel.cert.includes(c)?'matched':''}">${c}</span>`).join('');
+        const restrictHtml = line.restrictions.length
+          ? `<div class="line-restrictions">${line.restrictions.map(r=>`<span>⚠️ ${r}</span>`).join('')}</div>` : '';
+        const specExtrasHtml = line.specExtras.length
+          ? `<div class="line-specs">${line.specExtras.map(s=>`
+              <div class="spec-item">
+                <div class="spec-label">${s.label}</div>
+                <div class="spec-value">${s.value}</div>
+              </div>`).join('')}</div>` : '';
 
         return `
           <div class="line-card ${isTop?'top-match':''}">
@@ -1103,12 +1198,17 @@
                 <div class="match-label">符合度</div>
               </div>
             </div>
-            <div class="line-tags">${tags}</div>
+            <div class="line-meta">
+              <span class="meta-pill">⚗️ ${line.processType}</span>
+              <span class="meta-pill">⚡ ${line.speed}</span>
+              <span class="meta-pill">🧴 ${line.capacity}</span>
+              <span class="meta-pill">🔩 瓶口 ${line.bottleMouth}</span>
+            </div>
+            <div class="line-tags">${beverageTags}${equipTags}${certTags}</div>
+            ${specExtrasHtml}
+            ${restrictHtml}
             <div class="line-footer">
-              <div class="line-capacity">
-                <span>📦</span>
-                <span>產能：${line.capacity}</span>
-              </div>
+              <div class="line-capacity"></div>
               <button class="btn-contact" onclick="alert('感謝您的詢問！我們將盡快與您聯繫。')">聯絡這條產線 →</button>
             </div>
           </div>
