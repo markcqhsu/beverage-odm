@@ -3,10 +3,1146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beverage ODM</title>
+  <title>找到你的產線 — Beverage ODM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #143363;
+      --primary-container: #2e4a7b;
+      --surface: #f8f9fa;
+      --surface-bright: #ffffff;
+      --surface-container-lowest: #ffffff;
+      --surface-container-low: #f3f4f5;
+      --surface-container: #edeeef;
+      --surface-container-high: #e7e8e9;
+      --on-surface: #191c1d;
+      --on-surface-variant: #44474f;
+      --secondary: #54675e;
+      --secondary-container: #d0e4da;
+      --on-secondary-container: #54675e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      min-height: 100vh;
+    }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 249, 250, 0.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      letter-spacing: 0.12em;
+    }
+
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .progress-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--surface-container-high);
+      transition: all 0.35s ease;
+    }
+    .progress-dot.active {
+      background: var(--primary);
+      width: 28px;
+      border-radius: 4px;
+    }
+    .progress-dot.done {
+      background: var(--primary-container);
+      opacity: 0.5;
+    }
+
+    /* ─── Main ─── */
+    main { padding-top: 72px; }
+
+    /* ─── Hero ─── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 72px);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      max-width: 820px;
+    }
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--on-surface-variant);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.05rem 2.75rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-container));
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 40px rgba(20, 51, 99, 0.22);
+      letter-spacing: -0.01em;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 56px rgba(20, 51, 99, 0.32);
+    }
+
+    .floating-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      max-width: 560px;
+    }
+    .tag {
+      padding: 0.4rem 1rem;
+      background: var(--surface-container-lowest);
+      border-radius: 2rem;
+      font-size: 0.82rem;
+      color: var(--on-surface-variant);
+      box-shadow: 0 4px 16px rgba(25, 28, 29, 0.05);
+    }
+
+    /* ─── Wizard ─── */
+    .wizard {
+      display: none;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 7rem;
+    }
+    .wizard.active { display: block; }
+
+    .step { display: none; }
+    .step.active {
+      display: block;
+      animation: fadeUp 0.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header { margin-bottom: 2.5rem; }
+
+    .step-number {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 0.7rem;
+    }
+    .step-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin-bottom: 0.45rem;
+    }
+    .step-hint {
+      font-size: 0.88rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Option Cards */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .options-grid.wide {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .options-grid.duo {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 360px;
+    }
+
+    .option-card {
+      background: var(--surface-container-lowest);
+      border-radius: 1rem;
+      padding: 1.6rem 1rem 1.3rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 24px rgba(25, 28, 29, 0.05);
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .option-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 44px rgba(25, 28, 29, 0.09);
+    }
+    .option-card.selected {
+      background: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 44px rgba(20, 51, 99, 0.28);
+    }
+
+    .check-badge {
+      position: absolute;
+      top: 0.65rem; right: 0.65rem;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .option-card.selected .check-badge { opacity: 1; }
+
+    .option-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+    .option-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--on-surface);
+      margin-bottom: 0.2rem;
+    }
+    .option-card.selected .option-name { color: #fff; }
+
+    .option-label {
+      font-size: 0.73rem;
+      color: var(--on-surface-variant);
+    }
+    .option-card.selected .option-label { color: rgba(255,255,255,0.7); }
+
+    /* Skip button */
+    .skip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0;
+      background: none;
+      border: none;
+      color: var(--on-surface-variant);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .skip-btn:hover { color: var(--primary); }
+
+    /* Wizard nav */
+    .wizard-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2.2rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-container));
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px rgba(20, 51, 99, 0.2);
+    }
+    .btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(20, 51, 99, 0.3);
+    }
+    .btn-next:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ─── Loading ─── */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+    .loading.active { display: block; animation: fadeUp 0.3s ease; }
+
+    .loading-dots {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+    }
+    .loading-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 1.3s ease-in-out infinite;
+    }
+    .loading-dot:nth-child(2) { animation-delay: 0.22s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.44s; }
+
+    @keyframes pulse {
+      0%, 80%, 100% { transform: scale(0.55); opacity: 0.45; }
+      40%            { transform: scale(1);    opacity: 1; }
+    }
+
+    .loading-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* ─── Results ─── */
+    .results {
+      display: none;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 7rem;
+    }
+    .results.active { display: block; animation: fadeUp 0.5s ease; }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .results-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin-bottom: 0.9rem;
+    }
+    .results-subtitle {
+      color: var(--on-surface-variant);
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    .summary-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.75rem;
+    }
+    .summary-chip {
+      padding: 0.35rem 0.9rem;
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Line cards */
+    .line-card {
+      background: var(--surface-container-lowest);
+      border-radius: 1.25rem;
+      padding: 2.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 48px rgba(25, 28, 29, 0.06);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .line-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(25, 28, 29, 0.1);
+    }
+    .line-card.top-match::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-container));
+    }
+
+    .line-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .best-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--secondary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .line-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+    .line-desc {
+      font-size: 0.88rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    .match-badge {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .match-score {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .match-score sup { font-size: 0.9rem; }
+    .match-label {
+      font-size: 0.68rem;
+      color: var(--on-surface-variant);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .line-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+    }
+    .line-tag {
+      padding: 0.28rem 0.75rem;
+      background: var(--surface-container-low);
+      border-radius: 2rem;
+      font-size: 0.76rem;
+      color: var(--on-surface-variant);
+    }
+    .line-tag.matched {
+      background: rgba(20, 51, 99, 0.09);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .line-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--surface-container-low);
+    }
+    .line-capacity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+    }
+
+    .btn-contact {
+      padding: 0.65rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-container));
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-contact:hover {
+      box-shadow: 0 8px 28px rgba(20, 51, 99, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .restart-btn {
+      display: block;
+      margin: 3.5rem auto 0;
+      padding: 0.85rem 2.2rem;
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .restart-btn:hover {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .options-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 1rem 1.25rem; }
+      .wizard, .results { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Beverage ODM</h1>
-  <p>網站建置中...</p>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">
+    Beverage ODM
+    <span>PRODUCTION LINE FINDER</span>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</nav>
+
+<main>
+
+  <!-- ─── Hero ─── -->
+  <section class="hero" id="hero">
+    <p class="hero-eyebrow">飲料代工智慧配對</p>
+    <h1 class="hero-title">
+      你的下一瓶飲料，<br>
+      <em>從這裡開始。</em>
+    </h1>
+    <p class="hero-subtitle">
+      只需要幾個選擇，告訴我們你想做什麼飲料、需要什麼設備，
+      我們幫你找出最適合的代工產線。
+    </p>
+    <button class="btn-primary" onclick="startWizard()">
+      開始配對 →
+    </button>
+    <div class="floating-tags">
+      <span class="tag">🍵 茶飲</span>
+      <span class="tag">🧋 奶茶</span>
+      <span class="tag">☕ 咖啡</span>
+      <span class="tag">⚡ 運動飲料</span>
+      <span class="tag">🌱 植物奶</span>
+      <span class="tag">🍊 果汁</span>
+      <span class="tag">💪 蛋白飲</span>
+      <span class="tag">🥥 椰子汁</span>
+    </div>
+  </section>
+
+  <!-- ─── Wizard ─── -->
+  <section class="wizard" id="wizard">
+
+    <!-- Step 1: Beverage -->
+    <div class="step" id="step-1">
+      <div class="step-header">
+        <p class="step-number">Step 01 / 05</p>
+        <h2 class="step-title">你想做什麼飲料？</h2>
+        <p class="step-hint">可以複選，至少選一個</p>
+      </div>
+      <div class="options-grid" id="beverage-grid">
+        <div class="option-card" data-value="茶" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🍵</span>
+          <div class="option-name">茶</div>
+        </div>
+        <div class="option-card" data-value="奶茶" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🧋</span>
+          <div class="option-name">奶茶</div>
+        </div>
+        <div class="option-card" data-value="咖啡" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">☕</span>
+          <div class="option-name">咖啡</div>
+        </div>
+        <div class="option-card" data-value="蘆薈" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🌿</span>
+          <div class="option-name">蘆薈</div>
+        </div>
+        <div class="option-card" data-value="運動飲料" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">⚡</span>
+          <div class="option-name">運動飲料</div>
+        </div>
+        <div class="option-card" data-value="蛋白飲" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">💪</span>
+          <div class="option-name">蛋白飲</div>
+        </div>
+        <div class="option-card" data-value="果汁" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🍊</span>
+          <div class="option-name">果汁</div>
+        </div>
+        <div class="option-card" data-value="植物奶" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🌱</span>
+          <div class="option-name">植物奶</div>
+        </div>
+        <div class="option-card" data-value="椰子汁" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🥥</span>
+          <div class="option-name">椰子汁</div>
+        </div>
+        <div class="option-card" data-value="其他" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">✨</span>
+          <div class="option-name">其他</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" id="next-1" onclick="goNext(1)" disabled>繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Equipment -->
+    <div class="step" id="step-2">
+      <div class="step-header">
+        <p class="step-number">Step 02 / 05</p>
+        <h2 class="step-title">需要哪些特殊設備？</h2>
+        <p class="step-hint">可以複選，不需要可以跳過</p>
+      </div>
+      <button class="skip-btn" onclick="skipStep(2)">不需要特殊設備，跳過 →</button>
+      <div class="options-grid wide">
+        <div class="option-card" data-value="立式萃茶釜" onclick="toggle(this,'equipment')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🫖</span>
+          <div class="option-name">立式萃茶釜</div>
+          <div class="option-label">直立式大容量萃取</div>
+        </div>
+        <div class="option-card" data-value="臥式萃茶釜" onclick="toggle(this,'equipment')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🔩</span>
+          <div class="option-name">臥式萃茶釜</div>
+          <div class="option-label">臥式高壓萃取</div>
+        </div>
+        <div class="option-card" data-value="均質機" onclick="toggle(this,'equipment')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">⚙️</span>
+          <div class="option-name">均質機</div>
+          <div class="option-label">高壓均質處理</div>
+        </div>
+        <div class="option-card" data-value="咖啡萃取機" onclick="toggle(this,'equipment')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">☕</span>
+          <div class="option-name">咖啡萃取機</div>
+          <div class="option-label">精密咖啡萃取</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" onclick="goNext(2)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Particles -->
+    <div class="step" id="step-3">
+      <div class="step-header">
+        <p class="step-number">Step 03 / 05</p>
+        <h2 class="step-title">需要充填顆粒嗎？</h2>
+        <p class="step-hint">選擇一種顆粒尺寸，不需要可以跳過</p>
+      </div>
+      <button class="skip-btn" onclick="skipStep(3)">不需要顆粒充填，跳過 →</button>
+      <div class="options-grid">
+        <div class="option-card" data-value="3*3" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">3 × 3</div>
+          <div class="option-label">mm</div>
+        </div>
+        <div class="option-card" data-value="4*4" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">4 × 4</div>
+          <div class="option-label">mm</div>
+        </div>
+        <div class="option-card" data-value="5*5" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">5 × 5</div>
+          <div class="option-label">mm</div>
+        </div>
+        <div class="option-card" data-value="6*6" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">6 × 6</div>
+          <div class="option-label">mm</div>
+        </div>
+        <div class="option-card" data-value="7*7" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">7 × 7</div>
+          <div class="option-label">mm</div>
+        </div>
+        <div class="option-card" data-value="8*8" onclick="selectOne(this,'particle')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🟫</span>
+          <div class="option-name">8 × 8</div>
+          <div class="option-label">mm</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" onclick="goNext(3)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Label -->
+    <div class="step" id="step-4">
+      <div class="step-header">
+        <p class="step-number">Step 04 / 05</p>
+        <h2 class="step-title">標籤形式？</h2>
+        <p class="step-hint">選擇一種</p>
+      </div>
+      <div class="options-grid duo">
+        <div class="option-card" data-value="套標" onclick="selectOne(this,'label')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🏷️</span>
+          <div class="option-name">套標</div>
+          <div class="option-label">Shrink sleeve</div>
+        </div>
+        <div class="option-card" data-value="貼標" onclick="selectOne(this,'label')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">📋</span>
+          <div class="option-name">貼標</div>
+          <div class="option-label">Pressure sensitive</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Certifications -->
+    <div class="step" id="step-5">
+      <div class="step-header">
+        <p class="step-number">Step 05 / 05</p>
+        <h2 class="step-title">需要哪些認證？</h2>
+        <p class="step-hint">可以複選，不需要可以跳過</p>
+      </div>
+      <button class="skip-btn" onclick="skipStep(5)">不需要特定認證，跳過 →</button>
+      <div class="options-grid wide">
+        <div class="option-card" data-value="FDA" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🇺🇸</span>
+          <div class="option-name">FDA</div>
+          <div class="option-label">美國食品藥物</div>
+        </div>
+        <div class="option-card" data-value="Kosher" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">✡️</span>
+          <div class="option-name">Kosher</div>
+          <div class="option-label">猶太潔食認證</div>
+        </div>
+        <div class="option-card" data-value="Halal" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">☪️</span>
+          <div class="option-name">Halal</div>
+          <div class="option-label">清真認證</div>
+        </div>
+        <div class="option-card" data-value="BRC" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🇬🇧</span>
+          <div class="option-name">BRC</div>
+          <div class="option-label">英國零售協會</div>
+        </div>
+        <div class="option-card" data-value="ISO 14001" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🌍</span>
+          <div class="option-name">ISO 14001</div>
+          <div class="option-label">環境管理系統</div>
+        </div>
+        <div class="option-card" data-value="Sedex / SMETA" onclick="toggle(this,'cert')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🤝</span>
+          <div class="option-name">Sedex / SMETA</div>
+          <div class="option-label">社會責任稽核</div>
+        </div>
+      </div>
+      <div class="wizard-nav">
+        <button class="btn-back" onclick="goBack()">← 返回</button>
+        <button class="btn-next" onclick="showResults()">查看結果 ✨</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─── Loading ─── -->
+  <div class="loading" id="loading">
+    <div class="loading-dots">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
+    <p class="loading-text">正在比對最適合你的產線⋯</p>
+  </div>
+
+  <!-- ─── Results ─── -->
+  <section class="results" id="results"></section>
+
+</main>
+
+<script>
+  const TOTAL_STEPS = 5;
+  let currentStep = 0;
+  let history = [];
+
+  const sel = {
+    beverage: [],
+    equipment: [],
+    particle: null,
+    label: null,
+    cert: []
+  };
+
+  // Mock production line data
+  const lines = [
+    {
+      id: 'A',
+      name: '旗艦全能產線 Alpha',
+      desc: '多品類全配置，全認證覆蓋，最適合品項豐富的品牌商',
+      capacity: '60,000 瓶 / 日',
+      beverages: ['茶','奶茶','咖啡','果汁','植物奶','蘆薈','椰子汁','其他'],
+      equipment: ['立式萃茶釜','臥式萃茶釜','均質機','咖啡萃取機'],
+      particles: ['3*3','4*4','5*5','6*6','7*7','8*8'],
+      labels: ['套標','貼標'],
+      certs: ['FDA','Kosher','Halal','BRC','ISO 14001','Sedex / SMETA']
+    },
+    {
+      id: 'B',
+      name: '茶飲精工產線 Bravo',
+      desc: '專為茶飲、奶茶設計，萃茶設備齊全，支援小顆粒充填',
+      capacity: '45,000 瓶 / 日',
+      beverages: ['茶','奶茶'],
+      equipment: ['立式萃茶釜','臥式萃茶釜'],
+      particles: ['3*3','4*4','5*5'],
+      labels: ['套標','貼標'],
+      certs: ['FDA','Halal','ISO 14001']
+    },
+    {
+      id: 'C',
+      name: '機能飲料產線 Charlie',
+      desc: '運動飲料、蛋白飲、植物奶的最佳選擇，均質機全配',
+      capacity: '50,000 瓶 / 日',
+      beverages: ['運動飲料','蛋白飲','植物奶','咖啡'],
+      equipment: ['均質機','咖啡萃取機'],
+      particles: [],
+      labels: ['貼標'],
+      certs: ['FDA','BRC','ISO 14001','Sedex / SMETA']
+    },
+    {
+      id: 'D',
+      name: '果汁天然產線 Delta',
+      desc: '果汁、椰子汁、蘆薈飲品的專屬產線，大顆粒充填',
+      capacity: '40,000 瓶 / 日',
+      beverages: ['果汁','椰子汁','蘆薈','其他'],
+      equipment: ['均質機'],
+      particles: ['5*5','6*6','7*7','8*8'],
+      labels: ['套標','貼標'],
+      certs: ['FDA','Kosher','Halal']
+    }
+  ];
+
+  // ─── Progress ───
+  function initProgress() {
+    const bar = document.getElementById('progressBar');
+    bar.innerHTML = '';
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const d = document.createElement('div');
+      d.className = 'progress-dot';
+      d.id = `dot-${i}`;
+      bar.appendChild(d);
+    }
+  }
+
+  function updateProgress(step) {
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const d = document.getElementById(`dot-${i}`);
+      if (i < step - 1)      d.className = 'progress-dot done';
+      else if (i === step-1) d.className = 'progress-dot active';
+      else                   d.className = 'progress-dot';
+    }
+  }
+
+  // ─── Navigation ───
+  function startWizard() {
+    document.getElementById('hero').style.display = 'none';
+    document.getElementById('wizard').classList.add('active');
+    initProgress();
+    showStep(1);
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(`step-${n}`).classList.add('active');
+    currentStep = n;
+    updateProgress(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goNext(step) {
+    history.push(step);
+    showStep(step + 1);
+  }
+
+  function skipStep(step) {
+    if (step === 2) sel.equipment = [];
+    if (step === 3) sel.particle  = null;
+    if (step === 5) sel.cert      = [];
+    history.push(step);
+    if (step < TOTAL_STEPS) showStep(step + 1);
+    else showResults();
+  }
+
+  function goBack() {
+    if (history.length > 0) {
+      const prev = history.pop();
+      if (prev === 1 || history.length === 0) {
+        document.getElementById('wizard').classList.remove('active');
+        document.getElementById('hero').style.display = '';
+        document.getElementById('progressBar').innerHTML = '';
+        currentStep = 0;
+      } else {
+        showStep(prev - 1);
+      }
+    }
+  }
+
+  // ─── Selection helpers ───
+  function toggle(card, type) {
+    const val = card.dataset.value;
+    card.classList.toggle('selected');
+    if (card.classList.contains('selected')) {
+      if (!sel[type].includes(val)) sel[type].push(val);
+    } else {
+      sel[type] = sel[type].filter(v => v !== val);
+    }
+    if (type === 'beverage') {
+      document.getElementById('next-1').disabled = sel.beverage.length === 0;
+    }
+  }
+
+  function selectOne(card, type) {
+    card.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    sel[type] = card.dataset.value;
+    if (type === 'label') document.getElementById('next-4').disabled = false;
+  }
+
+  // ─── Matching ───
+  function computeScore(line) {
+    let total = 0, matched = 0;
+
+    if (sel.beverage.length) {
+      total += sel.beverage.length;
+      sel.beverage.forEach(b => { if (line.beverages.includes(b)) matched++; });
+    }
+    if (sel.equipment.length) {
+      total += sel.equipment.length;
+      sel.equipment.forEach(e => { if (line.equipment.includes(e)) matched++; });
+    }
+    if (sel.particle) {
+      total++;
+      if (line.particles.includes(sel.particle)) matched++;
+    }
+    if (sel.label) {
+      total++;
+      if (line.labels.includes(sel.label)) matched++;
+    }
+    if (sel.cert.length) {
+      total += sel.cert.length;
+      sel.cert.forEach(c => { if (line.certs.includes(c)) matched++; });
+    }
+
+    return total > 0 ? Math.round((matched / total) * 100) : 100;
+  }
+
+  // ─── Results ───
+  function showResults() {
+    document.getElementById('wizard').classList.remove('active');
+    const loading = document.getElementById('loading');
+    loading.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      loading.classList.remove('active');
+
+      const scored = lines
+        .map(l => ({ ...l, score: computeScore(l) }))
+        .sort((a, b) => b.score - a.score);
+
+      // Summary chips
+      const chips = [
+        ...sel.beverage,
+        ...sel.equipment,
+        ...(sel.particle ? [`顆粒 ${sel.particle}mm`] : []),
+        ...(sel.label ? [sel.label] : []),
+        ...sel.cert
+      ].map(c => `<span class="summary-chip">${c}</span>`).join('');
+
+      const cardsHtml = scored.map((line, idx) => {
+        const isTop = idx === 0;
+        const tags = [
+          ...line.beverages.map(b => `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`),
+          ...line.equipment.map(e => `<span class="line-tag ${sel.equipment.includes(e)?'matched':''}">${e}</span>`),
+          ...line.certs.map(c => `<span class="line-tag ${sel.cert.includes(c)?'matched':''}">${c}</span>`)
+        ].join('');
+
+        return `
+          <div class="line-card ${isTop?'top-match':''}">
+            <div class="line-header">
+              <div>
+                ${isTop ? '<div class="best-label">⭐ 最佳符合</div>' : ''}
+                <div class="line-name">${line.name}</div>
+                <div class="line-desc">${line.desc}</div>
+              </div>
+              <div class="match-badge">
+                <div class="match-score">${line.score}<sup>%</sup></div>
+                <div class="match-label">符合度</div>
+              </div>
+            </div>
+            <div class="line-tags">${tags}</div>
+            <div class="line-footer">
+              <div class="line-capacity">
+                <span>📦</span>
+                <span>產能：${line.capacity}</span>
+              </div>
+              <button class="btn-contact" onclick="alert('感謝您的詢問！我們將盡快與您聯繫。')">聯絡這條產線 →</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('results').innerHTML = `
+        <div class="results-header">
+          <h2 class="results-title">找到 ${scored.length} 條候選產線</h2>
+          <p class="results-subtitle">以下是根據你的需求排序的結果，<br>符合度越高代表越能滿足你的規格。</p>
+          <div class="summary-chips">${chips}</div>
+        </div>
+        ${cardsHtml}
+        <button class="restart-btn" onclick="restart()">← 重新配對</button>
+      `;
+
+      document.getElementById('results').classList.add('active');
+    }, 2000);
+  }
+
+  function restart() {
+    sel.beverage = []; sel.equipment = [];
+    sel.particle = null; sel.label = null; sel.cert = [];
+    history = []; currentStep = 0;
+
+    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('next-1').disabled = true;
+    document.getElementById('next-4').disabled = true;
+    document.getElementById('results').classList.remove('active');
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('hero').style.display = '';
+    document.getElementById('progressBar').innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
