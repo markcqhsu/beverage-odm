@@ -875,6 +875,23 @@
       color: var(--on-surface);
     }
 
+    .btn-show-more {
+      padding: 0.75rem 2rem;
+      background: var(--surface-container);
+      color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1.5px solid var(--primary);
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-show-more:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
     /* ─── Contact Modal ─── */
     .modal-overlay {
       display: none;
@@ -977,7 +994,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.38</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.39</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1418,7 +1435,7 @@
       results_subtitle: '以下是根據你的需求排序的結果，<br>符合度越高代表越能滿足你的規格。',
       best_match: '⭐ 最佳符合', match_label: '符合度',
       bottle_designs_label: '公瓶設計', bottle_empty_label: '空瓶示意', bottle_context_label: '情境圖',
-      contact_btn: '聯絡這條產線 →', restart_btn: '← 重新配對',
+      contact_btn: '聯絡這條產線 →', restart_btn: '← 重新配對', show_more_lines: n => `顯示更多產線（共 ${n} 條）`,
       chip_particle: s => `顆粒 ${s}mm`, chip_bottleneck: s => `瓶口 ${s}`,
       pill_bottle_mouth: '瓶口',
       process_aseptic: '無菌充填（Aseptic）', process_hotfill: '熱充填（Hot Filling）',
@@ -1471,7 +1488,7 @@
       results_subtitle: 'Results ranked by compatibility with your requirements.<br>Higher match scores indicate better specification fit.',
       best_match: '⭐ Best Match', match_label: 'Match',
       bottle_designs_label: 'Public Bottle Designs', bottle_empty_label: 'Empty Bottle', bottle_context_label: 'In Context',
-      contact_btn: 'Contact This Line →', restart_btn: '← Restart',
+      contact_btn: 'Contact This Line →', restart_btn: '← Restart', show_more_lines: n => `Show More Lines (${n} more)`,
       chip_particle: s => `Particle ${s}mm`, chip_bottleneck: s => `Neck ${s}`,
       pill_bottle_mouth: 'Neck',
       modal_title: 'Line Inquiry', modal_company: 'Company / Brand *', modal_contact: 'Contact Name *',
@@ -1524,7 +1541,7 @@
       results_subtitle: '要件への適合度順にランキング表示。<br>スコアが高いほど仕様への適合度が高い。',
       best_match: '⭐ 最適マッチ', match_label: '適合度',
       bottle_designs_label: 'パブリックボトルデザイン', bottle_empty_label: '空ボトル', bottle_context_label: 'コンテキスト画像',
-      contact_btn: 'このラインに問い合わせ →', restart_btn: '← やり直す',
+      contact_btn: 'このラインに問い合わせ →', restart_btn: '← やり直す', show_more_lines: n => `他のライン（${n}件）を表示`,
       chip_particle: s => `粒子 ${s}mm`, chip_bottleneck: s => `ネック ${s}`,
       pill_bottle_mouth: 'ネック',
       modal_title: 'ライン問い合わせ', modal_company: '会社名／ブランド名 *', modal_contact: '担当者名 *',
@@ -1924,74 +1941,74 @@
     'surabaya-250ml': {
       name: '250ml 標準瓶',
       capacity: '250 ml',
-      emptyImg: 'images/bottle-surabaya-250ml-empty.png',
-      contextImg: 'images/bottle-surabaya-250ml-context.png',
+      emptyImg: 'images/bottle-surabaya-250ml-empty.jpg',
+      contextImg: 'images/bottle-surabaya-250ml-context.jpg',
     },
     'surabaya-350ml': {
       name: '350ml 標準瓶',
       capacity: '350 ml',
-      emptyImg: 'images/bottle-surabaya-350ml-empty.png',
-      contextImg: 'images/bottle-surabaya-350ml-context.png',
+      emptyImg: 'images/bottle-surabaya-350ml-empty.jpg',
+      contextImg: 'images/bottle-surabaya-350ml-context.jpg',
     },
     'taiwan-580ml': {
       name: '580ml 公瓶',
       capacity: '580 ml',
-      emptyImg: 'images/bottle-taiwan-580ml-empty.png',
-      contextImg: 'images/bottle-taiwan-580ml-context.png',
+      emptyImg: 'images/bottle-taiwan-580ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-580ml-context.jpg',
     },
     'taiwan-hf-350ml': {
       name: '350ml 圓瓶（1881）',
       capacity: '350 ml',
-      emptyImg: 'images/bottle-taiwan-hf-350ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-350ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-350ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-350ml-context.jpg',
     },
     'taiwan-hf-500ml': {
       name: '500ml 方瓶（1881）',
       capacity: '500 ml',
-      emptyImg: 'images/bottle-taiwan-hf-500ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-500ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-500ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-500ml-context.jpg',
     },
     'taiwan-hf-600ml': {
       name: '600ml 圓瓶（1881）',
       capacity: '600 ml',
-      emptyImg: 'images/bottle-taiwan-hf-600ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-600ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-600ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-600ml-context.jpg',
     },
     'taiwan-hf-900ml': {
       name: '900ml 圓瓶（1881）',
       capacity: '900 ml',
-      emptyImg: 'images/bottle-taiwan-hf-900ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-900ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-900ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-900ml-context.jpg',
     },
     'taiwan-hf-1000ml': {
       name: '1000ml 圓瓶（1881）',
       capacity: '1000 ml',
-      emptyImg: 'images/bottle-taiwan-hf-1000ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-1000ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-1000ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-1000ml-context.jpg',
     },
     'taiwan-hf-1500ml': {
       name: '1500ml 方瓶（1881）',
       capacity: '1500 ml',
-      emptyImg: 'images/bottle-taiwan-hf-1500ml-empty.png',
-      contextImg: 'images/bottle-taiwan-hf-1500ml-context.png',
+      emptyImg: 'images/bottle-taiwan-hf-1500ml-empty.jpg',
+      contextImg: 'images/bottle-taiwan-hf-1500ml-context.jpg',
     },
     'zhangzhou-l1-500ml': {
       name: '500ml 公瓶',
       capacity: '500 ml',
-      emptyImg: 'images/bottle-zhangzhou-l1-500ml-empty.png',
-      contextImg: 'images/bottle-zhangzhou-l1-500ml-context.png',
+      emptyImg: 'images/bottle-zhangzhou-l1-500ml-empty.jpg',
+      contextImg: 'images/bottle-zhangzhou-l1-500ml-context.jpg',
     },
     'zhangzhou-1250ml': {
       name: '1250ml 公瓶',
       capacity: '1250 ml',
-      emptyImg: 'images/bottle-zhangzhou-1250ml-empty.png',
-      contextImg: 'images/bottle-zhangzhou-1250ml-context.png',
+      emptyImg: 'images/bottle-zhangzhou-1250ml-empty.jpg',
+      contextImg: 'images/bottle-zhangzhou-1250ml-context.jpg',
     },
     'zhangzhou-l2-500ml-carbonated': {
       name: '500ml 碳酸公瓶',
       capacity: '500 ml',
-      emptyImg: 'images/bottle-zhangzhou-l2-500ml-carbonated-empty.png',
-      contextImg: 'images/bottle-zhangzhou-l2-500ml-carbonated-context.png',
+      emptyImg: 'images/bottle-zhangzhou-l2-500ml-carbonated-empty.jpg',
+      contextImg: 'images/bottle-zhangzhou-l2-500ml-carbonated-context.jpg',
     }
   };
 
@@ -2140,7 +2157,8 @@
       ...sel.cert
     ].map(c => `<span class="summary-chip">${c}</span>`).join('');
 
-    const cardsHtml = scored.map((line, idx) => {
+    const INITIAL_SHOW = 3;
+    const buildCard = (line, idx) => {
       const isTop = idx === 0;
       const beverageTags = line.beverages.map(b =>
         `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`).join('');
@@ -2221,7 +2239,18 @@
           </div>
         </div>
       `;
-    }).join('');
+    };
+
+    const visibleCards = scored.slice(0, INITIAL_SHOW).map(buildCard).join('');
+    const hiddenCards = scored.slice(INITIAL_SHOW).map(buildCard).join('');
+    const hasMore = scored.length > INITIAL_SHOW;
+    const moreCount = scored.length - INITIAL_SHOW;
+    const showMoreBtn = hasMore ? `
+      <div id="show-more-wrap" style="text-align:center;margin:8px 0 24px">
+        <button class="btn-show-more" onclick="expandMoreLines()">${t('show_more_lines')(moreCount)}</button>
+      </div>
+      <div id="extra-lines" style="display:none">${hiddenCards}</div>
+    ` : '';
 
     document.getElementById('results').innerHTML = `
       <div class="results-header">
@@ -2229,11 +2258,17 @@
         <p class="results-subtitle">${t('results_subtitle')}</p>
         <div class="summary-chips">${chips}</div>
       </div>
-      ${cardsHtml}
+      ${visibleCards}
+      ${showMoreBtn}
       <button class="restart-btn" onclick="restart()">${t('restart_btn')}</button>
     `;
 
     document.getElementById('results').classList.add('active');
+  }
+
+  function expandMoreLines() {
+    document.getElementById('extra-lines').style.display = '';
+    document.getElementById('show-more-wrap').style.display = 'none';
   }
 
   function openContactModal(lineName, lineScore) {
