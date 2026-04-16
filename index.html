@@ -977,7 +977,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.35</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.36</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1076,6 +1076,11 @@
           <span class="check-badge">✓</span>
           <span class="option-icon">💧</span>
           <div class="option-name" data-i18n="bev_water">水</div>
+        </div>
+        <div class="option-card" data-value="碳酸飲料" onclick="toggle(this,'beverage')">
+          <span class="check-badge">✓</span>
+          <span class="option-icon">🫧</span>
+          <div class="option-name" data-i18n="bev_csd">碳酸飲料</div>
         </div>
         <div class="option-card" data-value="其他" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
@@ -1385,7 +1390,7 @@
       step1_title: '你想做什麼飲料？', step1_hint: '可以複選，至少選一個',
       bev_tea: '茶', bev_milk_tea: '奶茶', bev_coffee: '咖啡', bev_aloe: '蘆薈',
       bev_sports: '運動飲料', bev_protein: '蛋白飲', bev_juice: '果汁',
-      bev_plant_milk: '植物奶', bev_coconut: '椰子汁', bev_water: '水', bev_other: '其他',
+      bev_plant_milk: '植物奶', bev_coconut: '椰子汁', bev_water: '水', bev_csd: '碳酸飲料', bev_other: '其他',
       step2_title: '需要哪些特殊設備？', step2_hint: '可以複選，不需要可以跳過',
       skip_equipment: '不需要特殊設備，', skip_word: '跳過', skip_particles: '不需要顆粒充填，', skip_cert: '不需要特定認證，',
       equip_vertical: '立式萃茶釜', equip_vertical_label: 'Vertical Extractor',
@@ -1438,7 +1443,7 @@
       step1_title: 'What beverages do you want to produce?', step1_hint: 'Select all that apply (at least one)',
       bev_tea: 'Tea', bev_milk_tea: 'Milk Tea', bev_coffee: 'Coffee', bev_aloe: 'Aloe Vera',
       bev_sports: 'Sports Drink', bev_protein: 'Protein Drink', bev_juice: 'Juice',
-      bev_plant_milk: 'Plant Milk', bev_coconut: 'Coconut Water', bev_water: 'Water', bev_other: 'Other',
+      bev_plant_milk: 'Plant Milk', bev_coconut: 'Coconut Water', bev_water: 'Water', bev_csd: 'Carbonated Soft Drink (CSD)', bev_other: 'Other',
       step2_title: 'Any special equipment requirements?', step2_hint: 'Select all that apply, or skip if none',
       skip_equipment: 'No special equipment needed, ', skip_word: 'Skip', skip_particles: 'No particle filling needed, ', skip_cert: 'No specific certifications needed, ',
       equip_vertical: 'Vertical Tea Extractor', equip_vertical_label: 'Vertical Extractor',
@@ -1491,7 +1496,7 @@
       step1_title: 'どんな飲料を製造しますか？', step1_hint: '複数選択可（最低1つ選択）',
       bev_tea: '茶', bev_milk_tea: 'ミルクティー', bev_coffee: 'コーヒー', bev_aloe: 'アロエ',
       bev_sports: 'スポーツドリンク', bev_protein: 'プロテインドリンク', bev_juice: 'ジュース',
-      bev_plant_milk: '植物ミルク', bev_coconut: 'ココナッツウォーター', bev_water: '水', bev_other: 'その他',
+      bev_plant_milk: '植物ミルク', bev_coconut: 'ココナッツウォーター', bev_water: '水', bev_csd: '炭酸飲料（CSD）', bev_other: 'その他',
       step2_title: '特殊設備の要件は？', step2_hint: '複数選択可、不要な場合はスキップ',
       skip_equipment: '特殊設備は不要、', skip_word: 'スキップ', skip_particles: '粒子充填は不要、', skip_cert: '特定の認証は不要、',
       equip_vertical: '立式萃茶釜', equip_vertical_label: 'バーティカルエクストラクター',
