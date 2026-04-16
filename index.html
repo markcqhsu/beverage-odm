@@ -977,7 +977,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.30</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.31</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1552,7 +1552,7 @@
       ja: { name: '台中無菌工場2 ホットフィリング', desc: '最大8×8×8mmの粒子充填に対応するホットフィリングライン。ジュース、スポーツドリンク、酸性茶（マンゴー緑茶など）に適合。', restrictions: ['茶は酸性種（マンゴー緑茶など）のみ対応。一般的な茶類は非対応'] }
     },
     '無菌三廠-L4': {
-      en: { name: 'Aseptic Factory 3 – Line 4', desc: 'Vertical drum extraction with homogenizer, supports particle filling (max 6×6×6mm), suitable for multi-category beverages.' },
+      en: { name: 'Aseptic Factory 3 – Line 4', desc: 'Vertical drum extraction with homogenizer, suitable for multi-category beverages.', restrictions: ['Particle filling not supported'] },
       ja: { name: '無菌工場3 ライン4', desc: '均質機搭載の縦型円筒萃取システム。最大6×6×6mmの粒子充填に対応。多品目飲料に適合。' }
     },
     '漳州-L1': {
@@ -1728,22 +1728,19 @@
       name: '無菌三廠 Line 4',
       location: '（廠區待補充）',
       processType: '無菌充填（Aseptic）',
-      desc: '立式圓筒形萃取系統搭配均質機，支援顆粒充填（最大 6×6×6mm），適合多品類飲料',
+      desc: '立式圓筒形萃取系統搭配均質機，適合多品類飲料',
       speed: '36,000 BPH',
       capacity: '200ml ～ 2000ml',
       bottleMouth: '1881 28mm、38mm',
       beverages: ['茶','奶茶','咖啡','運動飲料','果汁','蘆薈','其他'],
       equipment: ['立式萃茶釜','均質機'],
-      particles: ['3*3*3','4*4*4','5*5*5','6*6*6'],
+      particles: [],
       bottlenecks: ['1881 28mm','38mm'],
       labels: ['套標','貼標'],
       certs: ['FSSC 22000','ISO 9001','FDA'],
-      restrictions: [],
+      restrictions: ['不支援果粒充填'],
       bottles: ['taiwan-580ml'],
       specExtras: [
-        { label: '最大顆粒尺寸', value: '6×6×6 mm' },
-        { label: '最大果肉含量', value: '10%' },
-        { label: '最大纖維長度', value: '20 mm' },
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
         { label: '套標長度範圍', value: '30 ～ 300 mm' },
