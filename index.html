@@ -123,6 +123,10 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    html[lang="ja"] .hero-title {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+    }
+    .hero-title span { white-space: nowrap; }
 
     .hero-subtitle {
       font-size: 1.05rem;
@@ -888,7 +892,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.14</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.15</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1509,6 +1513,7 @@
 
   function setLang(lang) {
     currentLang = lang;
+    document.documentElement.lang = lang;
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
