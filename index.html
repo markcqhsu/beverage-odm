@@ -875,6 +875,91 @@
       color: var(--on-surface);
     }
 
+    /* ─── Contact Modal ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(10, 20, 40, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      animation: lbFadeIn 0.22s ease;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(10,20,40,0.22);
+      padding: 2rem;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      background: var(--surface-container); border: none; border-radius: 50%;
+      width: 2rem; height: 2rem; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--on-surface-variant); transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--surface-container-high); }
+    .modal-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem; font-weight: 800;
+      color: var(--primary); margin-bottom: 0.25rem;
+    }
+    .modal-line-info {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--surface-container-low);
+      border-radius: 0.6rem; padding: 0.65rem 0.85rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .modal-line-name { font-size: 0.85rem; font-weight: 600; color: var(--on-surface); }
+    .modal-line-score {
+      margin-left: auto; font-size: 0.78rem; font-weight: 700;
+      color: var(--primary); background: rgba(20,51,99,0.08);
+      padding: 0.2rem 0.55rem; border-radius: 0.35rem;
+    }
+    .modal-field { margin-bottom: 1rem; }
+    .modal-label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      color: var(--on-surface-variant); margin-bottom: 0.35rem;
+    }
+    .modal-input, .modal-textarea {
+      width: 100%; padding: 0.65rem 0.85rem;
+      border: 1.5px solid var(--surface-container-high);
+      border-radius: 0.6rem; font-family: 'Manrope', sans-serif;
+      font-size: 0.9rem; color: var(--on-surface);
+      background: #fff; transition: border-color 0.2s;
+      outline: none;
+    }
+    .modal-input:focus, .modal-textarea:focus { border-color: var(--primary); }
+    .modal-textarea { resize: vertical; min-height: 80px; }
+    .modal-submit {
+      width: 100%; padding: 0.85rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-container));
+      color: #fff; border: none; border-radius: 0.65rem;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: all 0.25s; margin-top: 0.5rem;
+    }
+    .modal-submit:hover { box-shadow: 0 8px 24px rgba(20,51,99,0.28); transform: translateY(-1px); }
+    .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    .modal-success {
+      display: none; flex-direction: column; align-items: center;
+      text-align: center; padding: 1.5rem 0;
+    }
+    .modal-success.show { display: flex; }
+    .modal-success-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+    .modal-success-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;
+    }
+    .modal-success-body { font-size: 0.9rem; color: var(--on-surface-variant); line-height: 1.6; }
+
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
       .options-grid { grid-template-columns: repeat(2, 1fr); }
@@ -892,7 +977,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.20</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.21</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1332,6 +1417,11 @@
       chip_particle: s => `顆粒 ${s}mm`, chip_bottleneck: s => `瓶口 ${s}`,
       pill_bottle_mouth: '瓶口',
       process_aseptic: '無菌充填（Aseptic）', process_hotfill: '熱充填（Hot Filling）',
+      modal_title: '詢問產線', modal_company: '公司／品牌名稱 *', modal_contact: '聯絡人姓名 *',
+      modal_email: 'Email *', modal_phone: '電話（選填）', modal_notes: '備注 / 其他需求（選填）',
+      modal_submit: '送出詢問', modal_submitting: '送出中⋯',
+      modal_success_title: '詢問已送出！', modal_success_body: '我們將在 1–2 個工作天內與您聯繫。',
+      modal_close: '關閉',
       spec_max_particle: '最大顆粒尺寸', spec_max_pulp: '最大果肉含量', spec_max_fiber: '最大纖維長度',
       spec_bottle_height: '瓶高範圍', spec_bottle_width: '瓶寬範圍', spec_sleeve_length: '套標長度範圍',
     },
@@ -1379,6 +1469,11 @@
       contact_btn: 'Contact This Line →', restart_btn: '← Restart',
       chip_particle: s => `Particle ${s}mm`, chip_bottleneck: s => `Neck ${s}`,
       pill_bottle_mouth: 'Neck',
+      modal_title: 'Line Inquiry', modal_company: 'Company / Brand *', modal_contact: 'Contact Name *',
+      modal_email: 'Email *', modal_phone: 'Phone (optional)', modal_notes: 'Notes / Requirements (optional)',
+      modal_submit: 'Submit Inquiry', modal_submitting: 'Submitting…',
+      modal_success_title: 'Inquiry Sent!', modal_success_body: 'We\'ll be in touch within 1–2 business days.',
+      modal_close: 'Close',
       process_aseptic: 'Aseptic Filling', process_hotfill: 'Hot Filling',
       spec_max_particle: 'Max Particle Size', spec_max_pulp: 'Max Pulp Content', spec_max_fiber: 'Max Fiber Length',
       spec_bottle_height: 'Bottle Height Range', spec_bottle_width: 'Bottle Width Range', spec_sleeve_length: 'Sleeve Length Range',
@@ -1427,6 +1522,11 @@
       contact_btn: 'このラインに問い合わせ →', restart_btn: '← やり直す',
       chip_particle: s => `粒子 ${s}mm`, chip_bottleneck: s => `ネック ${s}`,
       pill_bottle_mouth: 'ネック',
+      modal_title: 'ライン問い合わせ', modal_company: '会社名／ブランド名 *', modal_contact: '担当者名 *',
+      modal_email: 'Email *', modal_phone: '電話（任意）', modal_notes: '備考 / その他のご要望（任意）',
+      modal_submit: '送信する', modal_submitting: '送信中⋯',
+      modal_success_title: 'お問い合わせを送信しました！', modal_success_body: '1〜2営業日以内にご連絡いたします。',
+      modal_close: '閉じる',
       process_aseptic: '無菌充填（アセプティック）', process_hotfill: 'ホットフィリング',
       spec_max_particle: '最大粒子サイズ', spec_max_pulp: '最大果肉含有量', spec_max_fiber: '最大繊維長',
       spec_bottle_height: 'ボトル高さ範囲', spec_bottle_width: 'ボトル幅範囲', spec_sleeve_length: 'スリーブ長さ範囲',
@@ -2069,7 +2169,7 @@
           ${restrictHtml}
           <div class="line-footer">
             <div class="line-capacity"></div>
-            <button class="btn-contact" onclick="contactAlert()">${t('contact_btn')}</button>
+            <button class="btn-contact" onclick="openContactModal('${lineText(line,'name').replace(/'/g,"\\'")}', ${line.score})">${t('contact_btn')}</button>
           </div>
         </div>
       `;
@@ -2088,14 +2188,74 @@
     document.getElementById('results').classList.add('active');
   }
 
-  function contactAlert() {
-    const msgs = {
-      zh: '感謝您的詢問！我們將盡快與您聯繫。',
-      en: 'Thank you for your inquiry! We will get back to you soon.',
-      ja: 'お問い合わせありがとうございます。近日中にご連絡いたします。'
-    };
-    alert(msgs[currentLang] || msgs.zh);
+  function openContactModal(lineName, lineScore) {
+    document.getElementById('modalLineName').textContent = lineName;
+    document.getElementById('modalLineScore').textContent = lineScore + '%';
+    const subjectPrefixes = { zh: 'THC 產線詢問', en: 'THC Line Inquiry', ja: 'THC ライン問い合わせ' };
+    document.getElementById('formSubject').value = `${subjectPrefixes[currentLang] || subjectPrefixes.zh} — ${lineName}`;
+    document.getElementById('formLineInfo').value = `${lineName} (${lineScore}%)`;
+    // Reset to form view
+    document.getElementById('modalForm').style.display = '';
+    document.getElementById('modalSuccess').classList.remove('show');
+    document.getElementById('contactForm').reset();
+    const btn = document.getElementById('modalSubmitBtn');
+    btn.disabled = false;
+    btn.textContent = t('modal_submit');
+    // Re-apply i18n to modal
+    document.querySelectorAll('#contactModal [data-i18n]').forEach(el => {
+      const val = t(el.dataset.i18n);
+      if (typeof val === 'string') el.textContent = val;
+    });
+    document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleModalOverlayClick(e) {
+    if (e.target === document.getElementById('contactModal')) closeContactModal();
+  }
+
+  async function submitContactForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('modalSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = t('modal_submitting');
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        document.getElementById('modalForm').style.display = 'none';
+        const success = document.getElementById('modalSuccess');
+        success.classList.add('show');
+        document.querySelectorAll('#modalSuccess [data-i18n]').forEach(el => {
+          const val = t(el.dataset.i18n);
+          if (typeof val === 'string') el.textContent = val;
+        });
+      } else {
+        btn.disabled = false;
+        btn.textContent = t('modal_submit');
+        alert(json.message || 'Submission failed. Please try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = t('modal_submit');
+      alert('Network error. Please try again.');
+    }
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContactModal(); });
 
   function restart() {
     sel.beverage = []; sel.equipment = [];
@@ -2123,13 +2283,66 @@
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeContactModal(); }
+  });
 </script>
 
 <!-- Lightbox overlay -->
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img class="lightbox-img" id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeContactModal()">✕</button>
+
+    <!-- Form view -->
+    <div id="modalForm">
+      <div class="modal-title" data-i18n="modal_title">詢問產線</div>
+      <div class="modal-line-info">
+        <span class="modal-line-name" id="modalLineName"></span>
+        <span class="modal-line-score" id="modalLineScore"></span>
+      </div>
+      <form id="contactForm" onsubmit="submitContactForm(event)">
+        <!-- Web3Forms access key — replace with your key from https://web3forms.com -->
+        <input type="hidden" name="access_key" value="REPLACE_WITH_YOUR_WEB3FORMS_KEY">
+        <input type="hidden" name="subject" id="formSubject">
+        <input type="hidden" name="line_info" id="formLineInfo">
+        <div class="modal-field">
+          <label class="modal-label" data-i18n="modal_company">公司／品牌名稱 *</label>
+          <input class="modal-input" type="text" name="company" required autocomplete="organization">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" data-i18n="modal_contact">聯絡人姓名 *</label>
+          <input class="modal-input" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" data-i18n="modal_email">Email *</label>
+          <input class="modal-input" type="email" name="email" required autocomplete="email">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" data-i18n="modal_phone">電話（選填）</label>
+          <input class="modal-input" type="tel" name="phone" autocomplete="tel">
+        </div>
+        <div class="modal-field">
+          <label class="modal-label" data-i18n="modal_notes">備注 / 其他需求（選填）</label>
+          <textarea class="modal-textarea" name="notes"></textarea>
+        </div>
+        <button class="modal-submit" type="submit" id="modalSubmitBtn" data-i18n="modal_submit">送出詢問</button>
+      </form>
+    </div>
+
+    <!-- Success view -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success-icon">✅</div>
+      <div class="modal-success-title" data-i18n="modal_success_title">詢問已送出！</div>
+      <div class="modal-success-body" data-i18n="modal_success_body">我們將在 1–2 個工作天內與您聯繫。</div>
+      <button class="modal-submit" style="margin-top:1.5rem;max-width:180px;" onclick="closeContactModal()" data-i18n="modal_close">關閉</button>
+    </div>
+  </div>
 </div>
 </body>
 </html>
