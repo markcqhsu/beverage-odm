@@ -977,7 +977,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.32</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.33</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1578,6 +1578,10 @@
     '印尼-KIIC-L2': {
       en: { name: 'KIIC Line 2', desc: 'Vertical extraction with homogenizer, supports carbonated beverages, suitable for tea, water, coffee, juice, sports drinks, 48,000 BPH.' },
       ja: { name: 'KIIC ライン2', desc: '均質機搭載の縦型萃取システム。炭酸飲料に対応。茶、水、コーヒー、ジュース、スポーツドリンクなどに対応。生産能力48,000 BPH。' }
+    },
+    '清新廠': {
+      en: { name: 'Qingxin Factory', desc: 'Horizontal extraction with homogenizer, supports plant-based milk, 48,000 BPH.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
+      ja: { name: '清新工場', desc: '均質機搭載の横型萃取システム。植物性ミルクに対応。生産能力48,000 BPH。', restrictions: ['タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
     }
   };
 
@@ -1883,6 +1887,29 @@
         { label: '瓶高範圍', value: '120 ～ 270 mm' },
         { label: '瓶寬範圍', value: '53 ～ 80 mm' },
         { label: '套標長度範圍', value: '30 ～ 270 mm' },
+      ]
+    },
+    {
+      id: '清新廠',
+      name: '清新廠',
+      location: '清新廠',
+      processType: '無菌充填（Aseptic）',
+      desc: '臥式萃茶釜搭配均質機，支援植物奶，產能 48,000 BPH',
+      speed: '48,000 BPH',
+      capacity: '250ml ～ 1500ml',
+      bottleMouth: '1881 28mm',
+      beverages: ['茶','奶茶','咖啡','運動飲料','果汁','植物奶'],
+      equipment: ['臥式萃茶釜','均質機'],
+      particles: [],
+      bottlenecks: ['1881 28mm'],
+      labels: ['套標'],
+      certs: [],
+      restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      bottles: [],
+      specExtras: [
+        { label: '瓶高範圍', value: '150 ～ 310 mm' },
+        { label: '瓶寬範圍', value: '55 ～ 108 mm' },
+        { label: '套標長度範圍', value: '30 ～ 300 mm' },
       ]
     }
   ];
