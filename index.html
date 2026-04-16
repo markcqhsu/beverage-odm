@@ -380,6 +380,32 @@
       font-weight: 700;
     }
 
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
+    .lang-btn {
+      padding: 0.28rem 0.6rem;
+      border: 1px solid var(--surface-container-high);
+      border-radius: 0.4rem;
+      background: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .lang-btn:hover { background: var(--surface-container); }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
     /* Wizard nav */
     .wizard-nav {
       display: flex;
@@ -860,11 +886,16 @@
   <div style="display:flex;align-items:baseline;gap:0.5rem;">
     <div class="logo" onclick="restart()" style="cursor:pointer;">
       THC Beverage ODM
-      <span>THC PRODUCTION LINE FINDER</span>
+      <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
     <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.13</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="zh" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">日本語</button>
+  </div>
 </nav>
 
 <main>
@@ -872,27 +903,27 @@
   <!-- ─── Hero ─── -->
   <section class="hero" id="hero">
     <img src="images/thc-logo.png" alt="Taiwan Hon Chuan Group" style="width:min(420px,80vw);margin-bottom:2.5rem;">
-    <p class="hero-eyebrow">飲料代工智慧配對</p>
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">飲料代工智慧配對</p>
     <h1 class="hero-title">
-      你的下一瓶飲料，<br>
-      <em>從這裡開始。</em>
+      <span data-i18n="hero_title1">你的下一瓶飲料，</span><br>
+      <em data-i18n="hero_title2">從這裡開始。</em>
     </h1>
-    <p class="hero-subtitle">
+    <p class="hero-subtitle" data-i18n="hero_subtitle">
       只需要幾個選擇，告訴我們你想做什麼飲料、需要什麼設備，
       我們幫你找出最適合的代工產線。
     </p>
-    <button class="btn-primary" onclick="startWizard()">
+    <button class="btn-primary" onclick="startWizard()" data-i18n="hero_cta">
       開始配對 →
     </button>
     <div class="floating-tags">
-      <span class="tag">🍵 茶飲</span>
-      <span class="tag">🧋 奶茶</span>
-      <span class="tag">☕ 咖啡</span>
-      <span class="tag">⚡ 運動飲料</span>
-      <span class="tag">🌱 植物奶</span>
-      <span class="tag">🍊 果汁</span>
-      <span class="tag">💪 蛋白飲</span>
-      <span class="tag">🥥 椰子汁</span>
+      <span class="tag" data-i18n="tag_tea">🍵 茶飲</span>
+      <span class="tag" data-i18n="tag_milk_tea">🧋 奶茶</span>
+      <span class="tag" data-i18n="tag_coffee">☕ 咖啡</span>
+      <span class="tag" data-i18n="tag_sports">⚡ 運動飲料</span>
+      <span class="tag" data-i18n="tag_plant_milk">🌱 植物奶</span>
+      <span class="tag" data-i18n="tag_juice">🍊 果汁</span>
+      <span class="tag" data-i18n="tag_protein">💪 蛋白飲</span>
+      <span class="tag" data-i18n="tag_coconut">🥥 椰子汁</span>
     </div>
   </section>
 
@@ -903,69 +934,69 @@
     <div class="step" id="step-1">
       <div class="step-header">
         <p class="step-number">Step 01 / 05</p>
-        <h2 class="step-title">你想做什麼飲料？</h2>
-        <p class="step-hint">可以複選，至少選一個</p>
+        <h2 class="step-title" data-i18n="step1_title">你想做什麼飲料？</h2>
+        <p class="step-hint" data-i18n="step1_hint">可以複選，至少選一個</p>
       </div>
       <div class="options-grid" id="beverage-grid">
         <div class="option-card" data-value="茶" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🍵</span>
-          <div class="option-name">茶</div>
+          <div class="option-name" data-i18n="bev_tea">茶</div>
         </div>
         <div class="option-card" data-value="奶茶" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🧋</span>
-          <div class="option-name">奶茶</div>
+          <div class="option-name" data-i18n="bev_milk_tea">奶茶</div>
         </div>
         <div class="option-card" data-value="咖啡" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">☕</span>
-          <div class="option-name">咖啡</div>
+          <div class="option-name" data-i18n="bev_coffee">咖啡</div>
         </div>
         <div class="option-card" data-value="蘆薈" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🌿</span>
-          <div class="option-name">蘆薈</div>
+          <div class="option-name" data-i18n="bev_aloe">蘆薈</div>
         </div>
         <div class="option-card" data-value="運動飲料" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">⚡</span>
-          <div class="option-name">運動飲料</div>
+          <div class="option-name" data-i18n="bev_sports">運動飲料</div>
         </div>
         <div class="option-card" data-value="蛋白飲" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">💪</span>
-          <div class="option-name">蛋白飲</div>
+          <div class="option-name" data-i18n="bev_protein">蛋白飲</div>
         </div>
         <div class="option-card" data-value="果汁" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🍊</span>
-          <div class="option-name">果汁</div>
+          <div class="option-name" data-i18n="bev_juice">果汁</div>
         </div>
         <div class="option-card" data-value="植物奶" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🌱</span>
-          <div class="option-name">植物奶</div>
+          <div class="option-name" data-i18n="bev_plant_milk">植物奶</div>
         </div>
         <div class="option-card" data-value="椰子汁" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🥥</span>
-          <div class="option-name">椰子汁</div>
+          <div class="option-name" data-i18n="bev_coconut">椰子汁</div>
         </div>
         <div class="option-card" data-value="水" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">💧</span>
-          <div class="option-name">水</div>
+          <div class="option-name" data-i18n="bev_water">水</div>
         </div>
         <div class="option-card" data-value="其他" onclick="toggle(this,'beverage')">
           <span class="check-badge">✓</span>
           <span class="option-icon">✨</span>
-          <div class="option-name">其他</div>
+          <div class="option-name" data-i18n="bev_other">其他</div>
         </div>
       </div>
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" id="next-1" onclick="goNext(1)" disabled>繼續 →</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" id="next-1" onclick="goNext(1)" disabled data-i18n="next">繼續 →</button>
       </div>
     </div>
 
@@ -973,23 +1004,23 @@
     <div class="step" id="step-2">
       <div class="step-header">
         <p class="step-number">Step 02 / 05</p>
-        <h2 class="step-title">需要哪些特殊設備？</h2>
-        <p class="step-hint">可以複選，不需要可以跳過</p>
+        <h2 class="step-title" data-i18n="step2_title">需要哪些特殊設備？</h2>
+        <p class="step-hint" data-i18n="step2_hint">可以複選，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(2)">不需要特殊設備，<span class="skip-word">跳過</span> →</button>
+      <button class="skip-btn" onclick="skipStep(2)"><span data-i18n="skip_equipment">不需要特殊設備，</span><span class="skip-word" data-i18n="skip_word">跳過</span> →</button>
       <div class="options-grid equip-grid">
         <div class="option-card equip-card" data-value="立式萃茶釜" onclick="toggle(this,'equipment')">
           <span class="check-badge">✓</span>
           <div class="equip-card-header">
             <span class="equip-icon">🫖</span>
             <div>
-              <div class="option-name">立式萃茶釜</div>
-              <div class="option-label">Vertical Extractor</div>
+              <div class="option-name" data-i18n="equip_vertical">立式萃茶釜</div>
+              <div class="option-label" data-i18n="equip_vertical_label">Vertical Extractor</div>
             </div>
           </div>
           <div class="equip-desc">
-            <div class="equip-desc-row"><b>機制</b>多配備密閉垂直攪拌系統，透過精準控制秒數與水溫，使茶葉在水中高速旋轉、舒展。</div>
-            <div class="equip-desc-row"><b>風味特點</b>茶湯濃度一致性極高，能快速萃取出茶葉的深層香氣，適合需要精準風味表現的商業場景。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_vertical_mech_row"><b>機制</b>多配備密閉垂直攪拌系統，透過精準控制秒數與水溫，使茶葉在水中高速旋轉、舒展。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_vertical_flavor_row"><b>風味特點</b>茶湯濃度一致性極高，能快速萃取出茶葉的深層香氣，適合需要精準風味表現的商業場景。</div>
           </div>
         </div>
         <div class="option-card equip-card" data-value="臥式萃茶釜" onclick="toggle(this,'equipment')">
@@ -997,13 +1028,13 @@
           <div class="equip-card-header">
             <span class="equip-icon">🔩</span>
             <div>
-              <div class="option-name">臥式萃茶釜</div>
-              <div class="option-label">Horizontal / Immersion</div>
+              <div class="option-name" data-i18n="equip_horizontal">臥式萃茶釜</div>
+              <div class="option-label" data-i18n="equip_horizontal_label">Horizontal / Immersion</div>
             </div>
           </div>
           <div class="equip-desc">
-            <div class="equip-desc-row"><b>機制</b>利用水平轉動或浸泡籃方式，茶葉與水的接觸方式較為平緩。</div>
-            <div class="equip-desc-row"><b>風味特點</b>風味表現較為溫和，類似冷泡或長時間浸泡的細緻感，能減少苦澀單寧酸的釋放。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_horizontal_mech_row"><b>機制</b>利用水平轉動或浸泡籃方式，茶葉與水的接觸方式較為平緩。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_horizontal_flavor_row"><b>風味特點</b>風味表現較為溫和，類似冷泡或長時間浸泡的細緻感，能減少苦澀單寧酸的釋放。</div>
           </div>
         </div>
         <div class="option-card equip-card" data-value="均質機" onclick="toggle(this,'equipment')">
@@ -1011,12 +1042,12 @@
           <div class="equip-card-header">
             <span class="equip-icon">⚙️</span>
             <div>
-              <div class="option-name">均質機</div>
-              <div class="option-label">Homogenizer</div>
+              <div class="option-name" data-i18n="equip_homogenizer">均質機</div>
+              <div class="option-label" data-i18n="equip_homogenizer_label">Homogenizer</div>
             </div>
           </div>
           <div class="equip-desc">
-            <div class="equip-desc-row"><b>用途</b>透過高壓、剪切力或高速攪拌，將脂肪、油脂或不溶性顆粒細化至微米級別，提升穩定性、口感與外觀，防止分層或沉澱。廣泛應用於乳製品、植物蛋白飲品、果汁及功能性飲料。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_homogenizer_use_row"><b>用途</b>透過高壓、剪切力或高速攪拌，將脂肪、油脂或不溶性顆粒細化至微米級別，提升穩定性、口感與外觀，防止分層或沉澱。廣泛應用於乳製品、植物蛋白飲品、果汁及功能性飲料。</div>
           </div>
         </div>
         <div class="option-card equip-card" data-value="磨豆機" onclick="toggle(this,'equipment')">
@@ -1024,19 +1055,19 @@
           <div class="equip-card-header">
             <span class="equip-icon">🫘</span>
             <div>
-              <div class="option-name">磨豆機</div>
-              <div class="option-label">Coffee Grinder</div>
+              <div class="option-name" data-i18n="equip_grinder">磨豆機</div>
+              <div class="option-label" data-i18n="equip_grinder_label">Coffee Grinder</div>
             </div>
           </div>
           <div class="equip-desc">
-            <div class="equip-desc-row"><b>用途</b>將咖啡豆現磨成所需粗細度，保留咖啡油脂與揮發性香氣，確保每批次研磨粒徑一致，是高品質 RTD 咖啡飲品的關鍵前處理設備。</div>
+            <div class="equip-desc-row" data-i18n-html="equip_grinder_use_row"><b>用途</b>將咖啡豆現磨成所需粗細度，保留咖啡油脂與揮發性香氣，確保每批次研磨粒徑一致，是高品質 RTD 咖啡飲品的關鍵前處理設備。</div>
           </div>
         </div>
       </div>
 
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" onclick="goNext(2)">繼續 →</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" onclick="goNext(2)" data-i18n="next">繼續 →</button>
       </div>
     </div>
 
@@ -1044,10 +1075,10 @@
     <div class="step" id="step-3">
       <div class="step-header">
         <p class="step-number">Step 03 / 05</p>
-        <h2 class="step-title">需要充填顆粒嗎？</h2>
-        <p class="step-hint">選擇一種顆粒尺寸，不需要可以跳過</p>
+        <h2 class="step-title" data-i18n="step3_title">需要充填顆粒嗎？</h2>
+        <p class="step-hint" data-i18n="step3_hint">選擇一種顆粒尺寸，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(3)">不需要顆粒充填，<span class="skip-word">跳過</span> →</button>
+      <button class="skip-btn" onclick="skipStep(3)"><span data-i18n="skip_particles">不需要顆粒充填，</span><span class="skip-word" data-i18n="skip_word">跳過</span> →</button>
       <div class="options-grid">
         <div class="option-card" data-value="3*3*3" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
@@ -1087,8 +1118,8 @@
         </div>
       </div>
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" onclick="goNext(3)">繼續 →</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" onclick="goNext(3)" data-i18n="next">繼續 →</button>
       </div>
     </div>
 
@@ -1096,8 +1127,8 @@
     <div class="step" id="step-4">
       <div class="step-header">
         <p class="step-number">Step 04 / 06</p>
-        <h2 class="step-title">瓶口尺寸？</h2>
-        <p class="step-hint">選擇一種</p>
+        <h2 class="step-title" data-i18n="step4_title">瓶口尺寸？</h2>
+        <p class="step-hint" data-i18n="step4_hint">選擇一種</p>
       </div>
       <div class="options-grid neck-grid">
         <div class="option-card neck-card" data-value="1881 28mm" onclick="selectOne(this,'bottleneck')">
@@ -1120,8 +1151,8 @@
         </div>
       </div>
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>繼續 →</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled data-i18n="next">繼續 →</button>
       </div>
     </div>
 
@@ -1129,26 +1160,26 @@
     <div class="step" id="step-5">
       <div class="step-header">
         <p class="step-number">Step 05 / 06</p>
-        <h2 class="step-title">標籤形式？</h2>
-        <p class="step-hint">選擇一種</p>
+        <h2 class="step-title" data-i18n="step5_title">標籤形式？</h2>
+        <p class="step-hint" data-i18n="step5_hint">選擇一種</p>
       </div>
       <div class="options-grid duo">
         <div class="option-card" data-value="套標" onclick="selectOne(this,'label')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🏷️</span>
-          <div class="option-name">套標</div>
+          <div class="option-name" data-i18n="label_sleeve">套標</div>
           <div class="option-label">Shrink sleeve</div>
         </div>
         <div class="option-card" data-value="貼標" onclick="selectOne(this,'label')">
           <span class="check-badge">✓</span>
           <span class="option-icon">📋</span>
-          <div class="option-name">貼標</div>
+          <div class="option-name" data-i18n="label_psa">貼標</div>
           <div class="option-label">Pressure sensitive</div>
         </div>
       </div>
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" id="next-5" onclick="goNext(5)" disabled>繼續 →</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" id="next-5" onclick="goNext(5)" disabled data-i18n="next">繼續 →</button>
       </div>
     </div>
 
@@ -1156,63 +1187,63 @@
     <div class="step" id="step-6">
       <div class="step-header">
         <p class="step-number">Step 06 / 06</p>
-        <h2 class="step-title">需要哪些認證？</h2>
-        <p class="step-hint">可以複選，不需要可以跳過</p>
+        <h2 class="step-title" data-i18n="step6_title">需要哪些認證？</h2>
+        <p class="step-hint" data-i18n="step6_hint">可以複選，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(6)">不需要特定認證，<span class="skip-word">跳過</span> →</button>
+      <button class="skip-btn" onclick="skipStep(6)"><span data-i18n="skip_cert">不需要特定認證，</span><span class="skip-word" data-i18n="skip_word">跳過</span> →</button>
       <div class="options-grid wide">
         <div class="option-card" data-value="FSSC 22000" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🏅</span>
           <div class="option-name">FSSC 22000</div>
-          <div class="option-label">食品安全系統認證</div>
+          <div class="option-label" data-i18n="cert_fssc_label">食品安全系統認證</div>
         </div>
         <div class="option-card" data-value="ISO 9001" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">📐</span>
           <div class="option-name">ISO 9001</div>
-          <div class="option-label">品質管理系統</div>
+          <div class="option-label" data-i18n="cert_iso9001_label">品質管理系統</div>
         </div>
         <div class="option-card" data-value="FDA" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🇺🇸</span>
           <div class="option-name">FDA</div>
-          <div class="option-label">美國食品藥物</div>
+          <div class="option-label" data-i18n="cert_fda_label">美國食品藥物</div>
         </div>
         <div class="option-card" data-value="Kosher" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">✡️</span>
           <div class="option-name">Kosher</div>
-          <div class="option-label">猶太潔食認證</div>
+          <div class="option-label" data-i18n="cert_kosher_label">猶太潔食認證</div>
         </div>
         <div class="option-card" data-value="Halal" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">☪️</span>
           <div class="option-name">Halal</div>
-          <div class="option-label">清真認證</div>
+          <div class="option-label" data-i18n="cert_halal_label">清真認證</div>
         </div>
         <div class="option-card" data-value="BRC" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🇬🇧</span>
           <div class="option-name">BRC</div>
-          <div class="option-label">英國零售協會</div>
+          <div class="option-label" data-i18n="cert_brc_label">英國零售協會</div>
         </div>
         <div class="option-card" data-value="ISO 14001" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🌍</span>
           <div class="option-name">ISO 14001</div>
-          <div class="option-label">環境管理系統</div>
+          <div class="option-label" data-i18n="cert_iso14001_label">環境管理系統</div>
         </div>
         <div class="option-card" data-value="Sedex / SMETA" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
           <span class="option-icon">🤝</span>
           <div class="option-name">Sedex / SMETA</div>
-          <div class="option-label">社會責任稽核</div>
+          <div class="option-label" data-i18n="cert_sedex_label">社會責任稽核</div>
         </div>
       </div>
       <div class="wizard-nav">
-        <button class="btn-back" onclick="goBack()">← 返回</button>
-        <button class="btn-next" onclick="showResults()">查看結果 ✨</button>
+        <button class="btn-back" onclick="goBack()" data-i18n="back">← 返回</button>
+        <button class="btn-next" onclick="showResults()" data-i18n="show_results">查看結果 ✨</button>
       </div>
     </div>
 
@@ -1225,7 +1256,7 @@
       <div class="loading-dot"></div>
       <div class="loading-dot"></div>
     </div>
-    <p class="loading-text">正在比對最適合你的產線⋯</p>
+    <p class="loading-text" data-i18n="loading_text">正在比對最適合你的產線⋯</p>
   </div>
 
   <!-- ─── Results ─── -->
@@ -1246,6 +1277,251 @@
     label: null,
     cert: []
   };
+
+  // ─── i18n ───
+  let currentLang = 'zh';
+  let lastScored = null;
+
+  const i18n = {
+    zh: {
+      logo_sub: 'THC PRODUCTION LINE FINDER',
+      hero_eyebrow: '飲料代工智慧配對',
+      hero_title1: '你的下一瓶飲料，',
+      hero_title2: '從這裡開始。',
+      hero_subtitle: '回答幾個問題，我們幫你精準配對台灣榮總（THC）旗下最適合的生產線。',
+      hero_cta: '開始配對 →',
+      tag_tea: '🍵 茶飲', tag_milk_tea: '🧋 奶茶', tag_coffee: '☕ 咖啡',
+      tag_juice: '🍊 果汁', tag_sports: '⚡ 運動飲', tag_coconut: '🥥 椰子',
+      tag_protein: '💪 蛋白', tag_plant: '🌱 植物奶',
+      step1_title: '你想做什麼飲料？', step1_hint: '可以複選，至少選一個',
+      bev_tea: '茶', bev_milk_tea: '奶茶', bev_coffee: '咖啡', bev_aloe: '蘆薈',
+      bev_sports: '運動飲料', bev_protein: '蛋白飲', bev_juice: '果汁',
+      bev_plant_milk: '植物奶', bev_coconut: '椰子汁', bev_water: '水', bev_other: '其他',
+      step2_title: '需要哪些特殊設備？', step2_hint: '可以複選，不需要可以跳過',
+      skip_equipment: '不需要特殊設備，', skip_word: '跳過', skip_particles: '不需要顆粒充填，', skip_cert: '不需要特定認證，',
+      equip_vertical: '立式萃茶釜', equip_vertical_label: 'Vertical Extractor',
+      equip_vertical_mech_row: '<b>機制</b>多配備密閉垂直攪拌系統，透過精準控制秒數與水溫，使茶葉在水中高速旋轉、舒展。',
+      equip_vertical_flavor_row: '<b>風味特點</b>茶湯濃度一致性極高，能快速萃取出茶葉的深層香氣，適合需要精準風味表現的商業場景。',
+      equip_horizontal: '臥式萃茶釜', equip_horizontal_label: 'Horizontal / Immersion',
+      equip_horizontal_mech_row: '<b>機制</b>利用水平轉動或浸泡籃方式，茶葉與水的接觸方式較為平緩。',
+      equip_horizontal_flavor_row: '<b>風味特點</b>風味表現較為溫和，類似冷泡或長時間浸泡的細緻感，能減少苦澀單寧酸的釋放。',
+      equip_homogenizer: '均質機', equip_homogenizer_label: 'Homogenizer',
+      equip_homogenizer_use_row: '<b>用途</b>透過高壓、剪切力或高速攪拌，將脂肪、油脂或不溶性顆粒細化至微米級別，提升穩定性、口感與外觀，防止分層或沉澱。廣泛應用於乳製品、植物蛋白飲品、果汁及功能性飲料。',
+      equip_grinder: '磨豆機', equip_grinder_label: 'Coffee Grinder',
+      equip_grinder_use_row: '<b>用途</b>將咖啡豆現磨成所需粗細度，保留咖啡油脂與揮發性香氣，確保每批次研磨粒徑一致，是高品質 RTD 咖啡飲品的關鍵前處理設備。',
+      step3_title: '需要充填顆粒嗎？', step3_hint: '選擇一種顆粒尺寸，不需要可以跳過',
+      step4_title: '瓶口尺寸？', step4_hint: '選擇一種',
+      step5_title: '標籤形式？', step5_hint: '選擇一種',
+      label_sleeve: '套標', label_psa: '貼標',
+      step6_title: '需要哪些認證？', step6_hint: '可以複選，不需要可以跳過',
+      cert_fssc_label: '食品安全系統認證', cert_iso9001_label: '品質管理系統',
+      cert_fda_label: '美國食品藥物', cert_kosher_label: '猶太潔食認證',
+      cert_halal_label: '清真認證', cert_brc_label: '英國零售協會',
+      cert_iso14001_label: '環境管理系統', cert_sedex_label: '社會責任稽核',
+      show_results: '查看結果 ✨', loading_text: '正在比對最適合你的產線⋯',
+      back: '← 返回', next: '繼續 →',
+      results_found: n => `找到 ${n} 條候選產線`,
+      results_subtitle: '以下是根據你的需求排序的結果，<br>符合度越高代表越能滿足你的規格。',
+      best_match: '⭐ 最佳符合', match_label: '符合度',
+      bottle_designs_label: '公瓶設計', bottle_empty_label: '空瓶示意', bottle_context_label: '情境圖',
+      contact_btn: '聯絡這條產線 →', restart_btn: '← 重新配對',
+      chip_particle: s => `顆粒 ${s}mm`, chip_bottleneck: s => `瓶口 ${s}`,
+      pill_bottle_mouth: '瓶口',
+      process_aseptic: '無菌充填（Aseptic）', process_hotfill: '熱充填（Hot Filling）',
+      spec_max_particle: '最大顆粒尺寸', spec_max_pulp: '最大果肉含量', spec_max_fiber: '最大纖維長度',
+      spec_bottle_height: '瓶高範圍', spec_bottle_width: '瓶寬範圍', spec_sleeve_length: '套標長度範圍',
+    },
+    en: {
+      logo_sub: 'THC PRODUCTION LINE FINDER',
+      hero_eyebrow: 'Beverage ODM Smart Matching',
+      hero_title1: 'Your next beverage,',
+      hero_title2: 'starts here.',
+      hero_subtitle: 'Answer a few questions and we\'ll match you with the most suitable THC production line.',
+      hero_cta: 'Start Matching →',
+      tag_tea: '🍵 Tea', tag_milk_tea: '🧋 Milk Tea', tag_coffee: '☕ Coffee',
+      tag_juice: '🍊 Juice', tag_sports: '⚡ Sports', tag_coconut: '🥥 Coconut',
+      tag_protein: '💪 Protein', tag_plant: '🌱 Plant Milk',
+      step1_title: 'What beverages do you want to produce?', step1_hint: 'Select all that apply (at least one)',
+      bev_tea: 'Tea', bev_milk_tea: 'Milk Tea', bev_coffee: 'Coffee', bev_aloe: 'Aloe Vera',
+      bev_sports: 'Sports Drink', bev_protein: 'Protein Drink', bev_juice: 'Juice',
+      bev_plant_milk: 'Plant Milk', bev_coconut: 'Coconut Water', bev_water: 'Water', bev_other: 'Other',
+      step2_title: 'Any special equipment requirements?', step2_hint: 'Select all that apply, or skip if none',
+      skip_equipment: 'No special equipment needed, ', skip_word: 'Skip', skip_particles: 'No particle filling needed, ', skip_cert: 'No specific certifications needed, ',
+      equip_vertical: 'Vertical Tea Extractor', equip_vertical_label: 'Vertical Extractor',
+      equip_vertical_mech_row: '<b>Mechanism</b> Sealed vertical agitation system with precise time and temperature control, allowing tea leaves to rotate rapidly in water for maximum extraction.',
+      equip_vertical_flavor_row: '<b>Flavor Profile</b> Extremely consistent brew strength, rapidly extracts deep tea aromas — ideal for commercial products requiring precise flavor consistency.',
+      equip_horizontal: 'Horizontal Tea Extractor', equip_horizontal_label: 'Horizontal / Immersion',
+      equip_horizontal_mech_row: '<b>Mechanism</b> Uses horizontal rotation or immersion basket; tea leaves interact with water in a gentle, gradual manner.',
+      equip_horizontal_flavor_row: '<b>Flavor Profile</b> Mild and delicate flavor, similar to cold-brew or long-steep methods, reducing bitter tannin extraction.',
+      equip_homogenizer: 'Homogenizer', equip_homogenizer_label: 'Homogenizer',
+      equip_homogenizer_use_row: '<b>Use</b> High pressure, shear force, or high-speed agitation reduces fats, oils, or insoluble particles to micron-level size, improving stability, texture, and appearance. Widely used in dairy, plant-based protein drinks, juices, and functional beverages.',
+      equip_grinder: 'Coffee Grinder', equip_grinder_label: 'Coffee Grinder',
+      equip_grinder_use_row: '<b>Use</b> Grinds coffee beans on demand to the required coarseness, preserving coffee oils and volatile aromas, ensuring consistent particle size per batch — a critical pre-processing step for high-quality RTD coffee beverages.',
+      step3_title: 'Do you need particle filling?', step3_hint: 'Select a particle size, or skip if not needed',
+      step4_title: 'Bottle Neck Size?', step4_hint: 'Select one',
+      step5_title: 'Label Type?', step5_hint: 'Select one',
+      label_sleeve: 'Shrink Sleeve', label_psa: 'Pressure Sensitive',
+      step6_title: 'Required Certifications?', step6_hint: 'Select all that apply, or skip if none',
+      cert_fssc_label: 'Food Safety System Certification', cert_iso9001_label: 'Quality Management System',
+      cert_fda_label: 'US Food & Drug', cert_kosher_label: 'Jewish Dietary Laws',
+      cert_halal_label: 'Islamic Dietary Laws', cert_brc_label: 'British Retail Consortium',
+      cert_iso14001_label: 'Environmental Management System', cert_sedex_label: 'Social Responsibility Audit',
+      show_results: 'View Results ✨', loading_text: 'Matching the best production lines for you…',
+      back: '← Back', next: 'Continue →',
+      results_found: n => `Found ${n} candidate lines`,
+      results_subtitle: 'Results ranked by compatibility with your requirements.<br>Higher match scores indicate better specification fit.',
+      best_match: '⭐ Best Match', match_label: 'Match',
+      bottle_designs_label: 'Public Bottle Designs', bottle_empty_label: 'Empty Bottle', bottle_context_label: 'In Context',
+      contact_btn: 'Contact This Line →', restart_btn: '← Restart',
+      chip_particle: s => `Particle ${s}mm`, chip_bottleneck: s => `Neck ${s}`,
+      pill_bottle_mouth: 'Neck',
+      process_aseptic: 'Aseptic Filling', process_hotfill: 'Hot Filling',
+      spec_max_particle: 'Max Particle Size', spec_max_pulp: 'Max Pulp Content', spec_max_fiber: 'Max Fiber Length',
+      spec_bottle_height: 'Bottle Height Range', spec_bottle_width: 'Bottle Width Range', spec_sleeve_length: 'Sleeve Length Range',
+    },
+    ja: {
+      logo_sub: 'THC 製造ライン検索',
+      hero_eyebrow: '飲料ODMスマートマッチング',
+      hero_title1: 'あなたの次のドリンク、',
+      hero_title2: 'ここから始まる。',
+      hero_subtitle: 'いくつかの質問に答えるだけで、THCの最適な製造ラインをマッチングします。',
+      hero_cta: 'マッチングを開始 →',
+      tag_tea: '🍵 茶', tag_milk_tea: '🧋 ミルクティー', tag_coffee: '☕ コーヒー',
+      tag_juice: '🍊 ジュース', tag_sports: '⚡ スポーツ', tag_coconut: '🥥 ココナッツ',
+      tag_protein: '💪 プロテイン', tag_plant: '🌱 植物ミルク',
+      step1_title: 'どんな飲料を製造しますか？', step1_hint: '複数選択可（最低1つ選択）',
+      bev_tea: '茶', bev_milk_tea: 'ミルクティー', bev_coffee: 'コーヒー', bev_aloe: 'アロエ',
+      bev_sports: 'スポーツドリンク', bev_protein: 'プロテインドリンク', bev_juice: 'ジュース',
+      bev_plant_milk: '植物ミルク', bev_coconut: 'ココナッツウォーター', bev_water: '水', bev_other: 'その他',
+      step2_title: '特殊設備の要件は？', step2_hint: '複数選択可、不要な場合はスキップ',
+      skip_equipment: '特殊設備は不要、', skip_word: 'スキップ', skip_particles: '粒子充填は不要、', skip_cert: '特定の認証は不要、',
+      equip_vertical: '立式萃茶釜', equip_vertical_label: 'バーティカルエクストラクター',
+      equip_vertical_mech_row: '<b>仕組み</b>密閉型垂直撹拌システムにより、時間と水温を精密に制御。茶葉が水中で高速回転・展開します。',
+      equip_vertical_flavor_row: '<b>風味の特徴</b>非常に一貫した茶液濃度。茶葉の深みある香りを迅速に抽出。精密な風味表現が求められる商業向けに最適。',
+      equip_horizontal: '臥式萃茶釜', equip_horizontal_label: 'ホリゾンタル／浸漬式',
+      equip_horizontal_mech_row: '<b>仕組み</b>水平回転または浸漬バスケット方式。茶葉と水の接触が穏やかで緩やかです。',
+      equip_horizontal_flavor_row: '<b>風味の特徴</b>コールドブリューや長時間浸漬に似た、穏やかで繊細な風味。苦味タンニンの溶出を抑えます。',
+      equip_homogenizer: 'ホモジナイザー', equip_homogenizer_label: 'ホモジナイザー',
+      equip_homogenizer_use_row: '<b>用途</b>高圧・剪断力・高速撹拌により、脂肪、油脂、不溶性粒子をミクロンレベルに微細化。安定性・食感・外観を向上させ、分離や沈殿を防止。乳製品、植物性プロテイン飲料、ジュース、機能性飲料に広く活用。',
+      equip_grinder: 'コーヒーグラインダー', equip_grinder_label: 'コーヒーグラインダー',
+      equip_grinder_use_row: '<b>用途</b>コーヒー豆をオンデマンドで必要な粗さに挽き、コーヒーオイルと揮発性香気を保持。バッチごとの粒度を均一化。高品質RTDコーヒー飲料の重要な前処理設備。',
+      step3_title: '粒子充填は必要ですか？', step3_hint: '粒子サイズを選択、不要な場合はスキップ',
+      step4_title: 'ボトルネックサイズ？', step4_hint: '1つ選択',
+      step5_title: 'ラベル形式？', step5_hint: '1つ選択',
+      label_sleeve: 'シュリンクスリーブ', label_psa: 'プレッシャーセンシティブ',
+      step6_title: '必要な認証は？', step6_hint: '複数選択可、不要な場合はスキップ',
+      cert_fssc_label: '食品安全システム認証', cert_iso9001_label: '品質マネジメントシステム',
+      cert_fda_label: '米国食品医薬品', cert_kosher_label: 'コーシャー認証',
+      cert_halal_label: 'ハラール認証', cert_brc_label: '英国小売協会',
+      cert_iso14001_label: '環境マネジメントシステム', cert_sedex_label: '社会的責任監査',
+      show_results: '結果を見る ✨', loading_text: '最適な製造ラインをマッチング中⋯',
+      back: '← 戻る', next: '次へ →',
+      results_found: n => `${n}件の候補ラインを発見`,
+      results_subtitle: '要件への適合度順にランキング表示。<br>スコアが高いほど仕様への適合度が高い。',
+      best_match: '⭐ 最適マッチ', match_label: '適合度',
+      bottle_designs_label: 'パブリックボトルデザイン', bottle_empty_label: '空ボトル', bottle_context_label: 'コンテキスト画像',
+      contact_btn: 'このラインに問い合わせ →', restart_btn: '← やり直す',
+      chip_particle: s => `粒子 ${s}mm`, chip_bottleneck: s => `ネック ${s}`,
+      pill_bottle_mouth: 'ネック',
+      process_aseptic: '無菌充填（アセプティック）', process_hotfill: 'ホットフィリング',
+      spec_max_particle: '最大粒子サイズ', spec_max_pulp: '最大果肉含有量', spec_max_fiber: '最大繊維長',
+      spec_bottle_height: 'ボトル高さ範囲', spec_bottle_width: 'ボトル幅範囲', spec_sleeve_length: 'スリーブ長さ範囲',
+    }
+  };
+
+  // Per-line text translations (name, desc, restrictions)
+  const lineTranslations = {
+    '台中無菌一廠-L1': {
+      en: { name: 'Taichung Aseptic 1 – Line 1', desc: 'Dual horizontal/vertical drum extraction with homogenizer, suitable for tea, coffee, juice, and sports drinks.' },
+      ja: { name: '台中無菌工場1 ライン1', desc: '横型・縦型円筒萃取システムのデュアル構成に均質機を搭載。茶、コーヒー、ジュース、スポーツドリンクに対応。' }
+    },
+    '台中無菌二廠-L2': {
+      en: { name: 'Taichung Aseptic 2 – Line 2', desc: 'Dual horizontal/vertical drum extraction with homogenizer.' },
+      ja: { name: '台中無菌工場2 ライン2', desc: '横型・縦型円筒萃取システムのデュアル構成に均質機を搭載。' }
+    },
+    '台中無菌二廠-L3': {
+      en: { name: 'Taichung Aseptic 2 – Line 3', desc: 'Dual horizontal/vertical drum extraction with homogenizer.' },
+      ja: { name: '台中無菌工場2 ライン3', desc: '横型・縦型円筒萃取システムのデュアル構成に均質機を搭載。' }
+    },
+    '台中無菌二廠-HF': {
+      en: { name: 'Taichung Aseptic 2 – Hot Filling', desc: 'Hot filling line supporting particle filling up to 8×8×8mm, suitable for juice, sports drinks, and acidic teas (e.g., mango green tea).', restrictions: ['Tea is limited to acidic varieties (e.g., mango green tea); standard tea is not supported'] },
+      ja: { name: '台中無菌工場2 ホットフィリング', desc: '最大8×8×8mmの粒子充填に対応するホットフィリングライン。ジュース、スポーツドリンク、酸性茶（マンゴー緑茶など）に適合。', restrictions: ['茶は酸性種（マンゴー緑茶など）のみ対応。一般的な茶類は非対応'] }
+    },
+    '無菌三廠-L4': {
+      en: { name: 'Aseptic Factory 3 – Line 4', desc: 'Vertical drum extraction with homogenizer, supports particle filling (max 6×6×6mm), suitable for multi-category beverages.' },
+      ja: { name: '無菌工場3 ライン4', desc: '均質機搭載の縦型円筒萃取システム。最大6×6×6mmの粒子充填に対応。多品目飲料に適合。' }
+    },
+    '漳州-L1': {
+      en: { name: 'Zhangzhou Factory – Line 1', desc: 'Horizontal extraction with homogenizer, supports carbonated beverages and plant-based milk, 48,000 BPH.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
+      ja: { name: '漳州工場 ライン1', desc: '均質機搭載の横型萃取システム。炭酸飲料・植物性ミルクに対応。生産能力48,000 BPH。', restrictions: ['タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
+    },
+    '漳州-L2': {
+      en: { name: 'Zhangzhou Factory – Line 2', desc: 'Vertical extraction with homogenizer, supports carbonated beverages and plant-based milk, parallel production with Line 1.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
+      ja: { name: '漳州工場 ライン2', desc: '均質機搭載の縦型萃取システム。炭酸飲料・植物性ミルクに対応。ライン1と並行生産。', restrictions: ['タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
+    },
+    '印尼-Surabaya-L1': {
+      en: { name: 'Surabaya Line 1', desc: 'Horizontal extraction with homogenizer, suitable for tea, water, coffee, juice, and sports drinks.' },
+      ja: { name: 'スラバヤ ライン1', desc: '均質機搭載の横型萃取システム。茶、水、コーヒー、ジュース、スポーツドリンクに対応。' }
+    },
+    '印尼-Surabaya-L2': {
+      en: { name: 'Surabaya Line 2', desc: 'Vertical extraction with homogenizer, suitable for tea, water, coffee, juice, and sports drinks, 48,000 BPH.' },
+      ja: { name: 'スラバヤ ライン2', desc: '均質機搭載の縦型萃取システム。茶、水、コーヒー、ジュース、スポーツドリンクに対応。生産能力48,000 BPH。' }
+    },
+    '印尼-KIIC-L1': {
+      en: { name: 'KIIC Line 1', desc: 'Hot filling line specialized in fruit tea, 48,000 BPH.', restrictions: ['Only fruit tea supported; other tea varieties and beverages are not supported'] },
+      ja: { name: 'KIIC ライン1', desc: 'フルーツティー専門のホットフィリングライン。生産能力48,000 BPH。', restrictions: ['フルーツティーのみ対応。その他の茶類や飲料は非対応'] }
+    },
+    '印尼-KIIC-L2': {
+      en: { name: 'KIIC Line 2', desc: 'Vertical extraction with homogenizer, supports carbonated beverages, suitable for tea, water, coffee, juice, sports drinks, 48,000 BPH.' },
+      ja: { name: 'KIIC ライン2', desc: '均質機搭載の縦型萃取システム。炭酸飲料に対応。茶、水、コーヒー、ジュース、スポーツドリンクなどに対応。生産能力48,000 BPH。' }
+    }
+  };
+
+  function t(key) {
+    const lang = i18n[currentLang];
+    return (lang && lang[key] !== undefined) ? lang[key] : (i18n.zh[key] || key);
+  }
+
+  function lineText(line, field) {
+    if (currentLang !== 'zh') {
+      const tr = lineTranslations[line.id];
+      if (tr && tr[currentLang] && tr[currentLang][field] !== undefined) {
+        return tr[currentLang][field];
+      }
+    }
+    return line[field];
+  }
+
+  function translateProcessType(pt) {
+    if (pt.includes('無菌')) return t('process_aseptic');
+    if (pt.includes('熱充填') || pt.includes('Hot')) return t('process_hotfill');
+    return pt;
+  }
+
+  function translateSpecLabel(label) {
+    const map = {
+      '最大顆粒尺寸': 'spec_max_particle', '最大果肉含量': 'spec_max_pulp',
+      '最大纖維長度': 'spec_max_fiber', '瓶高範圍': 'spec_bottle_height',
+      '瓶寬範圍': 'spec_bottle_width', '套標長度範圍': 'spec_sleeve_length',
+    };
+    return map[label] ? t(map[label]) : label;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const val = t(el.dataset.i18n);
+      if (typeof val === 'string') el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const val = t(el.dataset.i18nHtml);
+      if (typeof val === 'string') el.innerHTML = val;
+    });
+    if (lastScored) renderResults(lastScored);
+  }
 
   // Production line data
   const lines = [
@@ -1694,115 +1970,132 @@
 
     setTimeout(() => {
       loading.classList.remove('active');
-
-      const scored = lines
+      lastScored = lines
         .map(l => ({ ...l, score: computeScore(l) }))
         .sort((a, b) => b.score - a.score);
+      renderResults(lastScored);
+    }, 2000);
+  }
 
-      // Summary chips
-      const chips = [
-        ...sel.beverage,
-        ...sel.equipment,
-        ...(sel.particle ? [`顆粒 ${sel.particle.replace(/\*/g,'×')}mm`] : []),
-        ...(sel.bottleneck ? [`瓶口 ${sel.bottleneck}`] : []),
-        ...(sel.label ? [sel.label] : []),
-        ...sel.cert
-      ].map(c => `<span class="summary-chip">${c}</span>`).join('');
+  function renderResults(scored) {
+    const chips = [
+      ...sel.beverage,
+      ...sel.equipment,
+      ...(sel.particle ? [t('chip_particle')(sel.particle.replace(/\*/g,'×'))] : []),
+      ...(sel.bottleneck ? [t('chip_bottleneck')(sel.bottleneck)] : []),
+      ...(sel.label ? [sel.label] : []),
+      ...sel.cert
+    ].map(c => `<span class="summary-chip">${c}</span>`).join('');
 
-      const cardsHtml = scored.map((line, idx) => {
-        const isTop = idx === 0;
-        const beverageTags = line.beverages.map(b =>
-          `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`).join('');
-        const equipTags = line.equipment.map(e =>
-          `<span class="line-tag ${sel.equipment.includes(e)?'matched':''}">${e}</span>`).join('');
-        const certTags = line.certs.map(c =>
-          `<span class="line-tag cert-tag ${sel.cert.includes(c)?'matched':''}">${c}</span>`).join('');
-        const restrictHtml = line.restrictions.length
-          ? `<div class="line-restrictions">${line.restrictions.map(r=>`<span>⚠️ ${r}</span>`).join('')}</div>` : '';
-        const specExtrasHtml = line.specExtras.length
-          ? `<div class="line-specs">${line.specExtras.map(s=>`
-              <div class="spec-item">
-                <div class="spec-label">${s.label}</div>
-                <div class="spec-value">${s.value}</div>
-              </div>`).join('')}</div>` : '';
-        const bottleDesignsHtml = (line.bottles && line.bottles.length)
-          ? `<div class="bottle-designs">
-              <div class="bottle-designs-label">公瓶設計</div>
-              <div class="bottle-designs-row">
-                ${line.bottles.map(bid => {
-                  const b = bottleDesigns[bid];
-                  if (!b) return '';
-                  const emptyImgHtml = b.emptyImg
-                    ? `<img src="${b.emptyImg}" alt="${b.name} 空瓶示意" onclick="openLightbox('${b.emptyImg}')">`
-                    : '';
-                  const contextImgHtml = b.contextImg
-                    ? `<img src="${b.contextImg}" alt="${b.name} 情境圖" onclick="openLightbox('${b.contextImg}')">`
-                    : '';
-                  return `
-                    <div class="bottle-card">
-                      <div class="bottle-images">
-                        ${b.emptyImg ? `<div><div class="bottle-img-wrap">${emptyImgHtml}</div><div class="bottle-img-type">空瓶示意</div></div>` : ''}
-                        ${b.contextImg ? `<div><div class="bottle-img-wrap">${contextImgHtml}</div><div class="bottle-img-type">情境圖</div></div>` : ''}
-                      </div>
-                      <div class="bottle-info">
-                        <div class="bottle-name">${b.name}</div>
-                        <span class="bottle-capacity-badge">${b.capacity}</span>
-                      </div>
-                    </div>`;
-                }).join('')}
-              </div>
-            </div>` : '';
-
-        return `
-          <div class="line-card ${isTop?'top-match':''}">
-            <div class="line-header">
-              <div>
-                ${isTop ? '<div class="best-label">⭐ 最佳符合</div>' : ''}
-                <div class="line-name">${line.name}</div>
-                <div class="line-desc">${line.desc}</div>
-              </div>
-              <div class="match-badge">
-                <div class="match-score">${line.score}<sup>%</sup></div>
-                <div class="match-label">符合度</div>
-              </div>
+    const cardsHtml = scored.map((line, idx) => {
+      const isTop = idx === 0;
+      const beverageTags = line.beverages.map(b =>
+        `<span class="line-tag ${sel.beverage.includes(b)?'matched':''}">${b}</span>`).join('');
+      const equipTags = line.equipment.map(e =>
+        `<span class="line-tag ${sel.equipment.includes(e)?'matched':''}">${e}</span>`).join('');
+      const certTags = line.certs.map(c =>
+        `<span class="line-tag cert-tag ${sel.cert.includes(c)?'matched':''}">${c}</span>`).join('');
+      const restrictions = lineText(line, 'restrictions');
+      const restrictHtml = restrictions.length
+        ? `<div class="line-restrictions">${restrictions.map(r=>`<span>⚠️ ${r}</span>`).join('')}</div>` : '';
+      const specExtrasHtml = line.specExtras.length
+        ? `<div class="line-specs">${line.specExtras.map(s=>`
+            <div class="spec-item">
+              <div class="spec-label">${translateSpecLabel(s.label)}</div>
+              <div class="spec-value">${s.value}</div>
+            </div>`).join('')}</div>` : '';
+      const bottleDesignsHtml = (line.bottles && line.bottles.length)
+        ? `<div class="bottle-designs">
+            <div class="bottle-designs-label">${t('bottle_designs_label')}</div>
+            <div class="bottle-designs-row">
+              ${line.bottles.map(bid => {
+                const b = bottleDesigns[bid];
+                if (!b) return '';
+                const emptyImgHtml = b.emptyImg
+                  ? `<img src="${b.emptyImg}" alt="${b.name}" onclick="openLightbox('${b.emptyImg}')">`
+                  : '';
+                const contextImgHtml = b.contextImg
+                  ? `<img src="${b.contextImg}" alt="${b.name}" onclick="openLightbox('${b.contextImg}')">`
+                  : '';
+                return `
+                  <div class="bottle-card">
+                    <div class="bottle-images">
+                      ${b.emptyImg ? `<div><div class="bottle-img-wrap">${emptyImgHtml}</div><div class="bottle-img-type">${t('bottle_empty_label')}</div></div>` : ''}
+                      ${b.contextImg ? `<div><div class="bottle-img-wrap">${contextImgHtml}</div><div class="bottle-img-type">${t('bottle_context_label')}</div></div>` : ''}
+                    </div>
+                    <div class="bottle-info">
+                      <div class="bottle-name">${b.name}</div>
+                      <span class="bottle-capacity-badge">${b.capacity}</span>
+                    </div>
+                  </div>`;
+              }).join('')}
             </div>
-            <div class="line-meta">
-              <span class="meta-pill">⚗️ ${line.processType}</span>
-              <span class="meta-pill">⚡ ${line.speed}</span>
-              <span class="meta-pill">🧴 ${line.capacity}</span>
-              <span class="meta-pill">🔩 瓶口 ${line.bottleMouth}</span>
-              <span class="meta-pill">🏷️ ${line.labels.join(' / ')}</span>
+          </div>` : '';
+
+      const labelDisplay = line.labels.map(l => {
+        if (l === '套標') return t('label_sleeve');
+        if (l === '貼標') return t('label_psa');
+        return l;
+      }).join(' / ');
+
+      return `
+        <div class="line-card ${isTop?'top-match':''}">
+          <div class="line-header">
+            <div>
+              ${isTop ? `<div class="best-label">${t('best_match')}</div>` : ''}
+              <div class="line-name">${lineText(line, 'name')}</div>
+              <div class="line-desc">${lineText(line, 'desc')}</div>
             </div>
-            <div class="line-tags">${beverageTags}${equipTags}${certTags}</div>
-            ${specExtrasHtml}
-            ${bottleDesignsHtml}
-            ${restrictHtml}
-            <div class="line-footer">
-              <div class="line-capacity"></div>
-              <button class="btn-contact" onclick="alert('感謝您的詢問！我們將盡快與您聯繫。')">聯絡這條產線 →</button>
+            <div class="match-badge">
+              <div class="match-score">${line.score}<sup>%</sup></div>
+              <div class="match-label">${t('match_label')}</div>
             </div>
           </div>
-        `;
-      }).join('');
-
-      document.getElementById('results').innerHTML = `
-        <div class="results-header">
-          <h2 class="results-title">找到 ${scored.length} 條候選產線</h2>
-          <p class="results-subtitle">以下是根據你的需求排序的結果，<br>符合度越高代表越能滿足你的規格。</p>
-          <div class="summary-chips">${chips}</div>
+          <div class="line-meta">
+            <span class="meta-pill">⚗️ ${translateProcessType(line.processType)}</span>
+            <span class="meta-pill">⚡ ${line.speed}</span>
+            <span class="meta-pill">🧴 ${line.capacity}</span>
+            <span class="meta-pill">🔩 ${t('pill_bottle_mouth')} ${line.bottleMouth}</span>
+            <span class="meta-pill">🏷️ ${labelDisplay}</span>
+          </div>
+          <div class="line-tags">${beverageTags}${equipTags}${certTags}</div>
+          ${specExtrasHtml}
+          ${bottleDesignsHtml}
+          ${restrictHtml}
+          <div class="line-footer">
+            <div class="line-capacity"></div>
+            <button class="btn-contact" onclick="contactAlert()">${t('contact_btn')}</button>
+          </div>
         </div>
-        ${cardsHtml}
-        <button class="restart-btn" onclick="restart()">← 重新配對</button>
       `;
+    }).join('');
 
-      document.getElementById('results').classList.add('active');
-    }, 2000);
+    document.getElementById('results').innerHTML = `
+      <div class="results-header">
+        <h2 class="results-title">${t('results_found')(scored.length)}</h2>
+        <p class="results-subtitle">${t('results_subtitle')}</p>
+        <div class="summary-chips">${chips}</div>
+      </div>
+      ${cardsHtml}
+      <button class="restart-btn" onclick="restart()">${t('restart_btn')}</button>
+    `;
+
+    document.getElementById('results').classList.add('active');
+  }
+
+  function contactAlert() {
+    const msgs = {
+      zh: '感謝您的詢問！我們將盡快與您聯繫。',
+      en: 'Thank you for your inquiry! We will get back to you soon.',
+      ja: 'お問い合わせありがとうございます。近日中にご連絡いたします。'
+    };
+    alert(msgs[currentLang] || msgs.zh);
   }
 
   function restart() {
     sel.beverage = []; sel.equipment = [];
     sel.particle = null; sel.bottleneck = null; sel.label = null; sel.cert = [];
-    history = []; currentStep = 0;
+    history = []; currentStep = 0; lastScored = null;
 
     document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     document.getElementById('next-1').disabled = true;
