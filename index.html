@@ -375,6 +375,10 @@
       transition: color 0.2s;
     }
     .skip-btn:hover { color: var(--primary); }
+    .skip-btn .skip-word {
+      color: var(--primary);
+      font-weight: 700;
+    }
 
     /* Wizard nav */
     .wizard-nav {
@@ -858,7 +862,7 @@
       THC Beverage ODM
       <span>THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.9</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.10</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
 </nav>
@@ -971,7 +975,7 @@
         <h2 class="step-title">需要哪些特殊設備？</h2>
         <p class="step-hint">可以複選，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(2)">不需要特殊設備，跳過 →</button>
+      <button class="skip-btn" onclick="skipStep(2)">不需要特殊設備，<span class="skip-word">跳過</span> →</button>
       <div class="options-grid equip-grid">
         <div class="option-card equip-card" data-value="立式萃茶釜" onclick="toggle(this,'equipment')">
           <span class="check-badge">✓</span>
@@ -1042,7 +1046,7 @@
         <h2 class="step-title">需要充填顆粒嗎？</h2>
         <p class="step-hint">選擇一種顆粒尺寸，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(3)">不需要顆粒充填，跳過 →</button>
+      <button class="skip-btn" onclick="skipStep(3)">不需要顆粒充填，<span class="skip-word">跳過</span> →</button>
       <div class="options-grid">
         <div class="option-card" data-value="3*3*3" onclick="selectOne(this,'particle')">
           <span class="check-badge">✓</span>
@@ -1154,7 +1158,7 @@
         <h2 class="step-title">需要哪些認證？</h2>
         <p class="step-hint">可以複選，不需要可以跳過</p>
       </div>
-      <button class="skip-btn" onclick="skipStep(6)">不需要特定認證，跳過 →</button>
+      <button class="skip-btn" onclick="skipStep(6)">不需要特定認證，<span class="skip-word">跳過</span> →</button>
       <div class="options-grid wide">
         <div class="option-card" data-value="FSSC 22000" onclick="toggle(this,'cert')">
           <span class="check-badge">✓</span>
