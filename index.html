@@ -977,7 +977,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.26</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.27</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1556,8 +1556,8 @@
       ja: { name: '無菌工場3 ライン4', desc: '均質機搭載の縦型円筒萃取システム。最大6×6×6mmの粒子充填に対応。多品目飲料に適合。' }
     },
     '漳州-L1': {
-      en: { name: 'Zhangzhou Factory – Line 1', desc: 'Horizontal extraction with homogenizer, supports carbonated beverages and plant-based milk, 48,000 BPH.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
-      ja: { name: '漳州工場 ライン1', desc: '均質機搭載の横型萃取システム。炭酸飲料・植物性ミルクに対応。生産能力48,000 BPH。', restrictions: ['タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
+      en: { name: 'Zhangzhou Factory – Line 1', desc: 'Horizontal extraction with homogenizer, supports plant-based milk, 48,000 BPH.', restrictions: ['Carbonated beverages not supported', 'Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
+      ja: { name: '漳州工場 ライン1', desc: '均質機搭載の横型萃取システム。植物性ミルクに対応。生産能力48,000 BPH。', restrictions: ['炭酸飲料非対応', 'タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
     },
     '漳州-L2': {
       en: { name: 'Zhangzhou Factory – Line 2', desc: 'Vertical extraction with homogenizer, supports carbonated beverages and plant-based milk, parallel production with Line 1.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
@@ -1754,7 +1754,7 @@
       name: '漳州廠 Line 1',
       location: '漳州廠',
       processType: '無菌充填（Aseptic）',
-      desc: '臥式萃茶釜搭配均質機，支援碳酸飲料與植物奶，產能 48,000 BPH',
+      desc: '臥式萃茶釜搭配均質機，支援植物奶，產能 48,000 BPH',
       speed: '48,000 BPH',
       capacity: '250ml ～ 1500ml',
       bottleMouth: '28mm、38mm',
@@ -1764,7 +1764,7 @@
       bottlenecks: ['1881 28mm','1810 28mm','38mm'],
       labels: ['套標'],
       certs: [],
-      restrictions: ['不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
+      restrictions: ['不支援碳酸飲料','不支援牛磺酸','不支援果粒','不支援 NFC 果汁'],
       bottles: ['zhangzhou-l1-500ml','zhangzhou-1250ml'],
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
