@@ -994,7 +994,7 @@
       THC Beverage ODM
       <span data-i18n="logo_sub">THC PRODUCTION LINE FINDER</span>
     </div>
-    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.44</span>
+    <span style="font-size:0.68rem;color:#6b7280;font-family:'Manrope',sans-serif;font-weight:500;">v1.0.45</span>
   </div>
   <div class="progress-bar" id="progressBar"></div>
   <div class="lang-switcher">
@@ -1604,6 +1604,10 @@
     '清新廠': {
       en: { name: 'Qingxin Factory', desc: 'Horizontal extraction with homogenizer, supports plant-based milk, 48,000 BPH.', restrictions: ['Taurine not supported', 'Fruit particles not supported', 'NFC juice not supported'] },
       ja: { name: '清新工場', desc: '均質機搭載の横型萃取システム。植物性ミルクに対応。生産能力48,000 BPH。', restrictions: ['タウリン非対応', '果粒非対応', 'NFC ジュース非対応'] }
+    },
+    '自貿廠-L5': {
+      en: { name: 'Free Trade Zone Factory – Line 5', desc: 'Vertical extraction with homogenizer, suitable for tea, water, coffee, juice, and sports drinks, 48,000 BPH.' },
+      ja: { name: '自由貿易区工場 ライン5', desc: '均質機搭載の縦型萃取システム。茶、水、コーヒー、ジュース、スポーツドリンクに対応。生産能力48,000 BPH。' }
     }
   };
 
@@ -1932,6 +1936,30 @@
       specExtras: [
         { label: '瓶高範圍', value: '150 ～ 310 mm' },
         { label: '瓶寬範圍', value: '55 ～ 108 mm' },
+        { label: '套標長度範圍', value: '30 ～ 300 mm' },
+      ]
+    },
+    {
+      id: '自貿廠-L5',
+      name: '自貿廠 Line 5',
+      location: '自貿廠',
+      processType: '無菌充填（Aseptic）',
+      desc: '立式萃茶釜搭配均質機，適合茶、水、咖啡、果汁、運動飲料等多品類，產能 48,000 BPH',
+      speed: '48,000 BPH',
+      capacity: '250ml ～ 1500ml',
+      bottleMouth: '1881 28mm',
+      beverages: ['茶','水','咖啡','果汁','運動飲料'],
+      equipment: ['立式萃茶釜','均質機'],
+      particles: [],
+      bottlenecks: ['1881 28mm'],
+      labels: ['套標'],
+      certs: ['FSSC 22000','ISO 9001'],
+      restrictions: ['不支援果粒'],
+      bottles: [],
+      specExtras: [
+        { label: '最大顆粒尺寸', value: '不支援' },
+        { label: '瓶高範圍', value: '135 ～ 310 mm' },
+        { label: '瓶寬範圍', value: '53 ～ 95 mm' },
         { label: '套標長度範圍', value: '30 ～ 300 mm' },
       ]
     }
