@@ -1608,6 +1608,10 @@
     '自貿廠-L5': {
       en: { name: 'Free Trade Zone Factory – Line 5', desc: 'Vertical extraction with homogenizer, suitable for tea, water, coffee, juice, and sports drinks, 48,000 BPH.' },
       ja: { name: '自由貿易区工場 ライン5', desc: '均質機搭載の縦型萃取システム。茶、水、コーヒー、ジュース、スポーツドリンクに対応。生産能力48,000 BPH。' }
+    },
+    '泰國宏信廠': {
+      en: { name: 'Thailand Hongxin Factory', desc: 'Vertical drum extraction with homogenizer, suitable for tea, milk tea, and coconut water, 48,000 BPH.' },
+      ja: { name: 'タイ宏信工場', desc: '均質機搭載の縦型萃取システム。茶、ミルクティー、ココナッツウォーターに対応。生産能力48,000 BPH。' }
     }
   };
 
@@ -1960,6 +1964,30 @@
         { label: '最大顆粒尺寸', value: '不支援' },
         { label: '瓶高範圍', value: '135 ～ 310 mm' },
         { label: '瓶寬範圍', value: '53 ～ 95 mm' },
+        { label: '套標長度範圍', value: '30 ～ 300 mm' },
+      ]
+    },
+    {
+      id: '泰國宏信廠',
+      name: '泰國宏信廠',
+      location: '泰國宏信廠',
+      processType: '無菌充填（Aseptic）',
+      desc: '立式萃茶釜搭配均質機，適合茶、奶茶及椰子汁，產能 48,000 BPH',
+      speed: '48,000 BPH',
+      capacity: '420ml、440ml、500ml',
+      bottleMouth: '2622、38mm',
+      beverages: ['茶','奶茶','椰子汁'],
+      equipment: ['立式萃茶釜','均質機'],
+      particles: [],
+      bottlenecks: ['2622','38mm'],
+      labels: ['套標'],
+      certs: ['FDA','Halal'],
+      restrictions: ['不支援顆粒充填'],
+      bottles: [],
+      specExtras: [
+        { label: '最大顆粒尺寸', value: '不支援' },
+        { label: '瓶高範圍', value: '200 ～ 207 mm' },
+        { label: '瓶寬範圍', value: '62 ～ 68.5 mm' },
         { label: '套標長度範圍', value: '30 ～ 300 mm' },
       ]
     }
